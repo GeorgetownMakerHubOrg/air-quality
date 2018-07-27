@@ -1,0 +1,2 @@
+import wake
+wake.main()

@@ -3,8 +3,8 @@ import machine, micropython, utime
 import wifi
 voltage = machine.ADC(0)
 
-def measure(start_time):
-	print ("voltage is:", voltage.read())
+def measure(v):
+	v[0] = voltage.read()	
+	print ("voltage is:", v[0])
 	print ("memory usage is: ", micropython.mem_info())
-	wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-	wifi.post("voltage", voltage.read())
+	return(v)

@@ -33,7 +33,7 @@ def main():
 		wifi.post("voltage", (v[0]/1023)*4.25)
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
 		wifi.init_sta(False)
-		sleep.init()                  # see you later!
+		sleep.init(60)                  # see you later!
 	else:
 		print('power on or hard reset')
 		if button.value():
@@ -45,4 +45,4 @@ def main():
 #			webrepl.start()
 #			quit()
 		else:
-			sleep.init()
+			sleep.init(60)

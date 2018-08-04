@@ -3,30 +3,36 @@
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
 # 2. renaming this file to "wifi.py"
 #
-STA_SSID = 'My-Wifi- SSID'
-STA_Password = 'asdf4r123'
+STA_SSID = 'Gixxsfd'
+STA_Password = 'smsdfasdf'
 AP_SSID = 'STIA315'
-AP_Password = 'sasdf4r23'
+AP_Password = 'GoHoyas!'
+X_AIO_Key = '025ea3220asdfaewrdfsasdf1551b199c42f4520'
 User = 'fpgirard'
-X_AIO_Key = '025adsfasdfasdfkqwerasdfasdfb199c42f4520'
+Group = 'school'
 
 import network
 import sleep
+
+# Station 
 wlan = network.WLAN(network.STA_IF)
 
 # Access Point Variables
-
 ap = network.WLAN(network.AP_IF) 
 
 def init_sta(status):
+	import utime
 	if status == True:
 		wlan.active(True)
-		if not wlan.isconnected():
-			print('Connecting To Network...') 
-			wlan.connect(STA_SSID, STA_Password)
-			# this might chew up the battery ... change to 10 attempts?
-			while not wlan.isconnected():
-				pass
+		wlan.connect(STA_SSID,STA_Password)
+		count = 0
+		while not wlan.isconnected():   # try connecting for 10 seconds
+			print("Waiting for IP... Count:", count)
+			if count == 10:
+				print ("Can't find wifi - resetting")
+				sleep.init(60) # pass an argument to delay awakening?
+			utime.sleep(1)
+			count +=1 
 		print('Network Configuration:', wlan.ifconfig())
 	else:
 		wlan.active(False)
@@ -34,7 +40,8 @@ def init_sta(status):
 def post(Feed, value):
 	import json, urequests
 	headers = {'X-AIO-Key': X_AIO_Key,'Content-Type': 'application/json'}
-	url='https://io.adafruit.com/api/v2/'+User+'/feeds/hub.'+Feed+'/data.json'
+	url='https://io.adafruit.com/api/v2/'+User+'/feeds/'+Group+'.'+Feed+'/data.json'
+	# print('URL is:', url)
 	data = json.dumps({"value": value})
 	# POST response
 	try:

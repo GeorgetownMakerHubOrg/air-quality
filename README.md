@@ -1,4 +1,4 @@
-A MicroPython implementation of STIA315.   In lieu of Feather Huzzah, this version uses:
+A MicroPython implementation of STIA315.   This version uses:
 
 1. [D1 Mini from Weemos](https://tinyurl.com/yc5p8gho) in lieu of Adafruit's Feather Huzzah
 2. D1 Mini Battery Shield

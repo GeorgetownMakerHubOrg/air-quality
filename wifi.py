@@ -49,7 +49,7 @@ def post(Feed, value):
 		response = urequests.post(url, headers=headers, data=data)
 	except OSError as err:
 		print("OS error: {0}".format(err))
-		sleep.init()
+		sleep.init(60)
 	else:
 		response.close()
 

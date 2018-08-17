@@ -8,6 +8,7 @@
 def main():
 	import machine, utime, array          # ESP stuff
 	from machine import Pin, Signal
+	from sys import exit
 
 	import sleep, bosch, enviro, wifi     # our stuff
 
@@ -38,11 +39,11 @@ def main():
 		print('power on or hard reset')
 		if button.value():
 			print("Enter webREPL and upgrade")
-#			wifi.init_sta(False)
-#			wifi.init_ap(True)
-			led.on()
-#			import webrepl 
-#			webrepl.start()
-#			quit()
+			wifi.init_sta(False)
+			wifi.init_ap(True)
+#			led.on()
+			import webrepl 
+			webrepl.start()
+			exit()
 		else:
 			sleep.init(60)

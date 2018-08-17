@@ -17,6 +17,8 @@ Discuss with Colin:
 8. Lengthening the runtime for burn-in
 9. Integration with Wunderground
 
+[It's tiny!](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/D1-STIA315.jpg) 
+
 I'll keep one constantly running at the [Hub](https://io.adafruit.com/stia315/dashboards/hub).
 
 Code Uses the BME280 GitHub Repo:   https://github.com/catdog2/mpy_bme280_esp8266

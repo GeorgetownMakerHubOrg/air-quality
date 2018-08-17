@@ -3,13 +3,13 @@
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
 # 2. renaming this file to "wifi.py"
 #
-STA_SSID = 'Gixxsfd'
-STA_Password = 'smsdfasdf'
+STA_SSID = 'Gwerkfdt'
+STA_Password = ''
 AP_SSID = 'STIA315'
-AP_Password = 'GoHoyas!'
-X_AIO_Key = '025ea3220asdfaewrdfsasdf1551b199c42f4520'
-User = 'fpgirard'
-Group = 'school'
+AP_Password = 'smtdoh123'
+X_AIO_Key = 'a7e9asdfasdfasdfb17c6a0bfc260570'
+User = 'stia315'
+Group = 'hub'
 
 import network
 import sleep
@@ -24,15 +24,16 @@ def init_sta(status):
 	import utime
 	if status == True:
 		wlan.active(True)
-		wlan.connect(STA_SSID,STA_Password)
 		count = 0
-		while not wlan.isconnected():   # try connecting for 10 seconds
-			print("Waiting for IP... Count:", count)
-			if count == 10:
-				print ("Can't find wifi - resetting")
-				sleep.init(60) # pass an argument to delay awakening?
-			utime.sleep(1)
-			count +=1 
+		if not wlan.isconnected():   # should connect...
+			wlan.connect(STA_SSID,STA_Password) # if not then explicitly call connect
+			while not wlan.isconnected():   # try connecting for 10 seconds
+				print("Waiting for IP... Count:", count)
+				if count == 10:
+					print ("Can't find wifi - resetting")
+					sleep.init(60) # pass an argument to delay awakening?
+				utime.sleep(1)
+				count +=1 
 		print('Network Configuration:', wlan.ifconfig())
 	else:
 		wlan.active(False)

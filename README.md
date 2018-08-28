@@ -17,6 +17,11 @@ Discuss with Colin:
 8. Lengthening the runtime for burn-in
 9. Integration with Wunderground
 
+Things I'd like to fix:
+
+1.  Conversions to Fahrenheit, kPa, and % should be done in bosch.py not wake.py
+2.  If the battery hits a certain threshold, let's not go into deep sleep but shut it all down and save LiPo.
+
 [It's tiny!](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/D1-STIA315.jpg) 
 
 I'll keep one constantly running at the [Hub](https://io.adafruit.com/stia315/dashboards/hub).

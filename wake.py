@@ -18,7 +18,7 @@ def main():
 	button = Signal(pin2, invert=True)    # let's use Signals, eh?
 
 	# create numeric arrays for each sensor
-	tph = array.array('i',[0, 0, 0])      # BME280 Temp, Press, & Humid.
+	tph = array.array('f',[0., 0., 0.])   # BME280 Temp, Press, & Humid.
 	v = array.array('i',[0])              # Voltage
 	
 	led.off()
@@ -28,12 +28,11 @@ def main():
 		v = enviro.measure(v)
 		# Now let's post all
 		wifi.init_sta(True)
-		wifi.post("temperature",(tph[0]/100)*(9/5)+32)    # Also convert to F
-		wifi.post("pressure",tph[1]/256)
-		wifi.post("humidity",tph[2]/1024)
-		wifi.post("voltage", (v[0]/1023)*4.25)
+		wifi.post("temperature",tph[0])  # in F
+		wifi.post("pressure",tph[1])     # in kPa
+		wifi.post("humidity",tph[2])     # in %
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-		wifi.init_sta(False)
+		#wifi.init_sta(False)
 		sleep.init(60)                  # see you later!
 	else:
 		print('power on or hard reset')

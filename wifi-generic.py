@@ -3,13 +3,13 @@
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
 # 2. renaming this file to "wifi.py"
 #
-STA_SSID = 'Gwerkfdt'
-STA_Password = ''
+STA_SSID = 'HOMADSF15'
+STA_Password = 'FCASDFASDFjD9DA7'
 AP_SSID = 'STIA315'
 AP_Password = 'smtdoh123'
-X_AIO_Key = 'a7e9asdfasdfasdfb17c6a0bfc260570'
-User = 'stia315'
-Group = 'hub'
+X_AIO_Key = '025ea32Io.Adafruit.X_AIO_KEY51b199c42f4520'
+User = 'IO-ADAFRUIT-USER'
+Group = 'waterford'
 
 import network
 import sleep

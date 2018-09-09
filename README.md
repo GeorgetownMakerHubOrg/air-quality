@@ -21,10 +21,11 @@ Things I'd like to fix:
 
 1.  Conversions to Fahrenheit, kPa, and % should be done in bosch.py not wake.py
 2.  If the battery hits a certain threshold, let's not go into deep sleep but shut it all down and save LiPo.
+3.  It just occurred to me.  The BME280 draws power from the 3.3v even during ESP deep sleep.  Let's invoke sleep on it!
 
 [It's tiny!](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/D1-STIA315.jpg) 
 
-I'll keep one constantly running at the [Hub](https://io.adafruit.com/stia315/dashboards/hub).
+I'll keep one constantly running at the [Hub](https://io.adafruit.com/stia315/dashboards/school).
 
 Code Uses the BME280 GitHub Repo:   https://github.com/catdog2/mpy_bme280_esp8266
 

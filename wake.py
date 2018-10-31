@@ -32,8 +32,9 @@ def main():
 		wifi.post("pressure",tph[1])     # in kPa
 		wifi.post("humidity",tph[2])     # in %
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
+		wifi.post("voltage",v[0])
 		#wifi.init_sta(False)
-		sleep.init(60)                  # see you later!
+		sleep.init(60)                   # see you later!
 	else:
 		print('power on or hard reset')
 		if button.value():

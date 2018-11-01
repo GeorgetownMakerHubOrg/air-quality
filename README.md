@@ -25,7 +25,7 @@ Things I'd like to fix:
 
 [It's tiny!](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/D1-STIA315.jpg) 
 
-I'll keep one constantly running at the [Hub](https://io.adafruit.com/fpgirard/dashboards/school).
+I'll keep one constantly running at the [School](https://io.adafruit.com/fpgirard/dashboards/school).
 
 Code Uses the BME280 GitHub Repo:   https://github.com/catdog2/mpy_bme280_esp8266
 

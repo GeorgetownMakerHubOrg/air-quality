@@ -19,7 +19,7 @@ def main():
 
 	# create numeric arrays for each sensor
 	tph = array.array('f',[0., 0., 0.])   # BME280 Temp, Press, & Humid.
-	v = array.array('i',[0])              # Voltage
+	v = array.array('f',[0.])              # Voltage
 	
 	led.off()
 	if machine.reset_cause() == machine.DEEPSLEEP_RESET:

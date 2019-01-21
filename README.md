@@ -1,31 +1,49 @@
-A MicroPython implementation of STIA315.   This version uses:
+# STIA 436 STIA 436 - Air Quality Innovation
 
-1. [D1 Mini from Weemos](https://tinyurl.com/yc5p8gho) in lieu of Adafruit's Feather Huzzah
-2. D1 Mini Battery Shield
-3. [USB connected Solar Shield](https://tinyurl.com/y77dqpdg)
-4. [BME280 sensor (Temp, Press, Humid)](https://tinyurl.com/yafl3h9x) in lieu of DHT11 - 
+##Improvements on the [STIA315](https://github.com/colinmccormick/Georgetown_STIA315_AQ_monitor) course.   
 
-Discuss with Colin:
+These include:
 
-1. Feather Huzzah issues re: wake from sleep
-2. Power usage - 120ma on wake; 1ma on deep sleep
-3. Enviros to include battery voltage, runtime, meminfo
-4. Global list for maintaining AQ readings - pass the list 
-5. Larger battery?
-6. Stevenson screen and/or Acurite shield
-7. BME680 or some other sensor?  
-8. Lengthening the runtime for burn-in
-9. Integration with Wunderground
+1. Code written in Micropython
+1. Integrated battery shield and ESP8226 circuitry on single board (Lolin D1 Pro)
+1. Voltage monitoring on A0 Pin
+1. Stevenson case to improve air flow
+1. Crisp wiring that leverages the I2C bus
+1. Full deep-sleep & wake cycling
+1. Four (4) 16bit Analog Channels for ADC sensors
+1. Significant cost reduction (50% reduction)
 
-Things I'd like to fix:
+##This prototype includes the following components:
 
-1.  Conversions to Fahrenheit, kPa, and % should be done in bosch.py not wake.py
-2.  If the battery hits a certain threshold, let's not go into deep sleep but shut it all down and save LiPo.
-3.  It just occurred to me.  The BME280 draws power from the 3.3v even during ESP deep sleep.  Let's invoke sleep on it!
+1. [Wemos D1 Mini Pro](***)
+1. [Stevenson enclosure from Thingiverse](http://www.thingiverse.com/thing:2282869) - courtesy [Open Green Energy](https://www.opengreenenergy.com/)
+1. 4 I2C-based Sensors:
+	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
+	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)]https://www.bosch-sensortec.com/bst/products/all_products/bme680)
+	1. [MAX30105 IR Sensor (PM2.5 Sensor)](https://www.maximintegrated.com/en/products/sensors/MAX30105.html)
+	1. [ADS1115 ADC Channel Board](https://www.adafruit.com/product/1085)
+1. [USB connected Solar Shield](https://tinyurl.com/yad7xpcu)
+1. [2500mAh LiPo Battery](https://www.adafruit.com/product/328)
 
-[It's tiny!](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/D1-STIA315.jpg) 
+##Open Actions/Areas of Investigation & Improvement:
 
-I'll keep one constantly running at the [School](https://io.adafruit.com/fpgirard/dashboards/school).
+1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?   
+1. Better understanding of the accuracy and target purpose of the MAX30105 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point.](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor)
+1. Integration with other IoT sites - ThingSpeak, Wunderground.
 
-Code Uses the BME280 GitHub Repo:   https://github.com/catdog2/mpy_bme280_esp8266
+##Possible Improvements:
+
+1. If LiPo battery hits a certain threshold, enter deep sleep to prevent total depletion.
+1. Set alerts using IFTTT webhooks to alert when battery hits a threshold.
+1. The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
+
+##Notes
+[So much open source technology packed in a small space!](./D1-STIA436.jpg) 
+
+* 2 Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
+* This code base leverages several other important MicroPython repositories including but not limited to:
+	* BME280 GitHub Repo](https://github.com/catdog2/mpy_bme280_esp8266)
+	* [BME680 GitHub Repo]()
+	* [MAX30105 GitHub Repo]()
+	* [ADS1115 GitHub Repo](https://github.com/adafruit/micropython-adafruit-ads1015)
 

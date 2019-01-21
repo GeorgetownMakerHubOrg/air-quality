@@ -10,21 +10,21 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	import sleep, bosch, enviro, wifi     # our stuff
+	import sleep, b280, enviro, wifi       # our stuff
 
 	start_time = utime.ticks_ms()         # let's track runtime (for measuring current usage)
-	led = Pin(12, Pin.OUT)                # set GPIO12 as output to led
-	pin2 = Pin(2, Pin.IN, Pin.PULL_UP)    # set GPIO2 as input with pullup
+	pin2 = Pin(0, Pin.IN, Pin.PULL_UP)    # set GPIO0 as input with pullup for upgrading via WebREPL
 	button = Signal(pin2, invert=True)    # let's use Signals, eh?
 
 	# create numeric arrays for each sensor
-	tph = array.array('f',[0., 0., 0.])   # BME280 Temp, Press, & Humid.
-	v = array.array('f',[0.])              # Voltage
+	tph = array.array('f',[0., 0., 0.])   # BME280 Temp, Press, & Humid
+	#tphg = array.array('f',[0.,0.,0.,0.]) # BME680 Temp, Press, Humid, and Gas
+	v = array.array('f',[0.])             # Voltage
 	
-	led.off()
 	if machine.reset_cause() == machine.DEEPSLEEP_RESET:
 		print('woke from a deep sleep')
-		tph = bosch.measure(tph)
+		tph = b280.measure(tph)
+		#tphg = b680.measure(tphg) """fix this"""
 		v = enviro.measure(v)
 		# Now let's post all
 		wifi.init_sta(True)
@@ -33,6 +33,7 @@ def main():
 		wifi.post("humidity",tph[2])     # in %
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
 		wifi.post("voltage",v[0])
+		print('Runtime is: %5.3f.' % utime.ticks_ms - start_time," ms")
 		#wifi.init_sta(False)
 		sleep.init(600)                  # see you later!
 	else:
@@ -41,7 +42,6 @@ def main():
 			print("Enter webREPL and upgrade")
 			wifi.init_sta(False)
 			wifi.init_ap(True)
-#			led.on()
 			import webrepl 
 			webrepl.start()
 			exit()

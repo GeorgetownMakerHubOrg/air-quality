@@ -19,7 +19,7 @@ These include:
 1. [Stevenson enclosure from Thingiverse](http://www.thingiverse.com/thing:2282869) - courtesy [Open Green Energy](https://www.opengreenenergy.com/)
 1. 4 I2C-based Sensors:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
-	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)]https://www.bosch-sensortec.com/bst/products/all_products/bme680)
+	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
 	1. [MAX30105 IR Sensor (PM2.5 Sensor)](https://www.maximintegrated.com/en/products/sensors/MAX30105.html)
 	1. [ADS1115 ADC Channel Board](https://www.adafruit.com/product/1085)
 1. [USB connected Solar Shield](https://tinyurl.com/yad7xpcu)

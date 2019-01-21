@@ -42,7 +42,7 @@ These include:
 
 * 2 Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
 * This code base leverages several other important MicroPython repositories including but not limited to:
-	* BME280 GitHub Repo](https://github.com/catdog2/mpy_bme280_esp8266)
+	* [BME280 GitHub Repo](https://github.com/catdog2/mpy_bme280_esp8266)
 	* [BME680 GitHub Repo]()
 	* [MAX30105 GitHub Repo]()
 	* [ADS1115 GitHub Repo](https://github.com/adafruit/micropython-adafruit-ads1015)

@@ -12,6 +12,7 @@ These include:
 1. Full deep-sleep & wake cycling
 1. Four (4) 16bit Analog Channels for ADC sensors
 1. Significant cost reduction (50% reduction)
+1. Lithium Ion Battery with 20% greater mAh at 87% cost savings over LiPo
 
 ## This prototype includes the following components:
 

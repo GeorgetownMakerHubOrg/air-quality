@@ -1,7 +1,7 @@
 #
 # BME280 code from https://github.com/catdog2/mpy_bme280_esp8266
 # Given that we might have multiple Bosch sensors on I2C bus, we might have to alter the
-# BME280 default address in this file: BME280_I2CADDR = 0x76 
+# BME280 default address when we instance it - BME280_I2CADDR = 0x76 
 # 
 # Do we want to use median() to take multiple samples to remove noise?
 

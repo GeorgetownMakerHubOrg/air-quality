@@ -1,4 +1,4 @@
-# STIA 436 STIA 436 - Air Quality Innovation
+# STIA 436 - Air Quality Innovation
 
 ## Improvements on the [STIA315](https://github.com/colinmccormick/Georgetown_STIA315_AQ_monitor) course.   
 

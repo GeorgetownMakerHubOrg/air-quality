@@ -9,7 +9,7 @@ import array
 from machine import I2C, Pin   # create an I2C bus object for all I2C-based sensors.
 import bme280
 
-i2c = I2C(scl=Pin(5), sda=Pin(4))
+i2c = I2C(scl=Pin(5), sda=Pin(4))		  # create the I2C bus
 bme280 = bme280.BME280(i2c=i2c, address=0x76)
 
 def median(lst):

@@ -3,13 +3,13 @@
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
 # 2. renaming this file to "wifi.py"
 #
-STA_SSID = 'HOMADSF15'
-STA_Password = 'FCASDFASDFjD9DA7'
-AP_SSID = 'STIA315'
-AP_Password = 'smtdoh123'
-X_AIO_Key = '025ea32Io.Adafruit.X_AIO_KEY51b199c42f4520'
-User = 'IO-ADAFRUIT-USER'
-Group = 'waterford'
+STA_SSID = 'GuestNet'
+STA_Password = 'GoHoyaSaxa'
+AP_SSID = 'STIA436'
+AP_Password = 'HillTopHoyas'
+X_AIO_Key = 'Io.Adafruit.X_AIO_KEY025ea3251b199c42f4520'
+User = 'IO-ADAFRUIT-USER-NAME'
+Group = 'airqual'
 
 import network
 import sleep
@@ -38,6 +38,15 @@ def init_sta(status):
 	else:
 		wlan.active(False)
 
+def init_ap(status):
+	if status == True:
+		print('activate AP_SSID')
+		ap.active(True)         
+		ap.config(essid=AP_SSID, password=AP_Password) # set the ESSID of the access point
+	else:
+		print('deactivate Access Point')
+		ap.active(False)
+
 def post(Feed, value):
 	import json, urequests
 	headers = {'X-AIO-Key': X_AIO_Key,'Content-Type': 'application/json'}
@@ -52,12 +61,3 @@ def post(Feed, value):
 		sleep.init(60)
 	else:
 		response.close()
-
-def init_ap(status):
-	if status == True:
-		print('activate AP_SSID')
-		ap.active(True)         
-		ap.config(essid=AP_SSID, password=AP_Password) # set the ESSID of the access point
-	else:
-		print('deactivate Access Point')
-		ap.active(False)

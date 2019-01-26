@@ -1,2 +1,2 @@
-PASS = 'smtdoh123'
+PASS = 'GoHoyas!'
 

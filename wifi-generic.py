@@ -5,12 +5,13 @@
 #
 STA_SSID = 'GuestNet'
 STA_Password = 'GoHoyaSaxa'
-AP_SSID = 'STIA436'
+AP_SSID = 'STIA436-fpg'				# use an SSID that combines class and GUid to make it unique.
 AP_Password = 'HillTopHoyas'
 X_AIO_Key = 'Io.Adafruit.X_AIO_KEY025ea3251b199c42f4520'
 User = 'IO-ADAFRUIT-USER-NAME'
 Group = 'airqual'
 
+SLEEP = 5
 import network
 import sleep
 
@@ -25,13 +26,13 @@ def init_sta(status):
 	if status == True:
 		wlan.active(True)
 		count = 0
-		if not wlan.isconnected():   # should connect...
-			wlan.connect(STA_SSID,STA_Password) # if not then explicitly call connect
-			while not wlan.isconnected():   # try connecting for 10 seconds
+		if not wlan.isconnected():               # should connect...
+			wlan.connect(STA_SSID,STA_Password)  # if not then explicitly call connect
+			while not wlan.isconnected():        # try connecting for 10 seconds
 				print("Waiting for IP... Count:", count)
 				if count == 10:
 					print ("Can't find wifi - resetting")
-					sleep.init(60) # pass an argument to delay awakening?
+					sleep.init(SLEEP)               # pass an argument to delay awakening?
 				utime.sleep(1)
 				count +=1 
 		print('Network Configuration:', wlan.ifconfig())
@@ -58,6 +59,6 @@ def post(Feed, value):
 		response = urequests.post(url, headers=headers, data=data)
 	except OSError as err:
 		print("OS error: {0}".format(err))
-		sleep.init(60)
+		sleep.init(SLEEP)
 	else:
 		response.close()

@@ -5,6 +5,7 @@
 # Don't forget to enable A0 battery as well as sleep (16 & Reset) - solder!
 # 
 # 
+SLEEP = 5
 
 def main():
 	import machine, utime, array          # ESP stuff
@@ -20,10 +21,10 @@ def main():
 	button = Signal(pin2, invert=True)        # let's use Signals, eh?
 
 	# create numeric arrays for each sensor
-	tph = array.array('f',[0., 0., 0.])   # BME280 Temp, Press, & Humid
-	tphg = array.array('f',[0.,0.,0.,0.]) # BME680 Temp, Press, Humid, and Gas
-	adc = array.array('i',[0,0,0,0])
-	v = array.array('f',[0.])             # Voltage
+	tph = array.array('f',[0., 0., 0.])       # BME280 Temp, Press, & Humid
+	tphg = array.array('f',[0.,0.,0.,0.])     # BME680 Temp, Press, Humid, and Gas
+	adc = array.array('i',[0,0,0,0])          # 4 analog channgels - woot!
+	v = array.array('f',[0.])                 # Voltage
 	
 	if machine.reset_cause() == machine.DEEPSLEEP_RESET:
 		print('woke from a deep sleep')
@@ -43,7 +44,7 @@ def main():
 		wifi.post("a3",adc[3])           # Analog 3
 		wifi.post("voltage",v[0])
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-		sleep.init(5)                    # see you later!
+		sleep.init(SLEEP)                    # see you later!
 	else:
 		print('power on or hard reset')
 		if button.value():
@@ -54,4 +55,4 @@ def main():
 			webrepl.start()
 			exit()
 		else:
-			sleep.init(10)
+			sleep.init(SLEEP)

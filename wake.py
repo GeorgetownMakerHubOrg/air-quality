@@ -5,7 +5,7 @@
 # Don't forget to enable A0 battery as well as sleep (16 & Reset) - solder!
 # 
 # 
-SLEEP = 5
+SLEEP = 60
 
 def main():
 	import machine, utime, array          # ESP stuff
@@ -14,11 +14,10 @@ def main():
 
 	import sleep, tph280, enviro, analog, wifi    # our stuff
 
-	start_time = utime.ticks_ms()             # let's track runtime (for measuring current usage)
-	# device stuff 
+	start_time = utime.ticks_ms()        	      # let's track runtime (for measuring current usage)
 
-	pin2 = Pin(2, Pin.IN, Pin.PULL_UP)        # set GPIO0 as input with pullup for upgrading via WebREPL
-	button = Signal(pin2, invert=True)        # let's use Signals, eh?
+	pin2 = Pin(2, Pin.IN, Pin.PULL_UP)            # set GPIO0 as input with pullup for upgrading via WebREPL
+	button = Signal(pin2, invert=True)            # let's use Signals, eh?
 
 	# create numeric arrays for each sensor
 	tph = array.array('f',[0., 0., 0.])       # BME280 Temp, Press, & Humid
@@ -44,15 +43,7 @@ def main():
 		wifi.post("a3",adc[3])           # Analog 3
 		wifi.post("voltage",v[0])
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-		sleep.init(SLEEP)                    # see you later!
+		sleep.init(SLEEP)                # see you later!
 	else:
 		print('power on or hard reset')
-		if button.value():
-			print("Enter webREPL and upgrade")
-			wifi.init_sta(False)
-			wifi.init_ap(True)
-			import webrepl 
-			webrepl.start()
-			exit()
-		else:
-			sleep.init(SLEEP)
+		sleep.init(SLEEP)

@@ -31,20 +31,20 @@ The prototype has the following components:
 The I2C devices are set to the following addresses:
 
 * 72 (0x48) - ADS1115 Analog-To-Digital Converter
-* 87 (0x57) - MAX3015 IR Sensor
+* 87 (0x57) - MAX30105 IR Sensor
 * 118 (0x76) - BME280 Sensor
 * 119 (0x77) - BME680 Sensor
 
 ## Open Actions/Areas of Investigation & Improvement:
 
-1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?   
+1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?  Currently, the unit draws 75 mA running and 2 mA in deep sleep - much of the draw during sleep is from the sensors.  At a 1 minute sampling, we can go about 10 days (without using the 680 or 30105) 
 1. Better understanding of the accuracy and target purpose of the MAX30105 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point.](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor)
 1. Integration with other IoT sites - ThingSpeak, Wunderground.
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
 
 ## Possible Improvements:
 
-1. If LiPo battery hits a certain threshold, enter deep sleep to prevent total depletion.
+1. If Lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
 1. Set alerts using IFTTT webhooks to alert when battery hits a threshold.
 1. The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
 
@@ -57,7 +57,7 @@ The I2C devices are set to the following addresses:
 	1. [esptool.py](https://github.com/espressif/esptool) - for flashing MicroPython on the D1 Lolin/Wemos Pro
 	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files on the D1.
 	1. [MicroPython](https://github.com/micropython) - if you're up for building from source!
-	1. [WebREPL files to access the ESP wirelessly](https://github.com/micropython/webrepl)
+	1. [WebREPL files](https://github.com/micropython/webrepl) to access the ESP wirelessly
 
 * Two Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
 

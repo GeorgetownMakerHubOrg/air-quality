@@ -9,7 +9,7 @@ AP_SSID = 'STIA436-fpg'				# use an SSID that combines class and GUid to make it
 AP_Password = 'HillTopHoyas'
 X_AIO_Key = 'Io.Adafruit.X_AIO_KEY025ea3251b199c42f4520'
 User = 'IO-ADAFRUIT-USER-NAME'
-Group = 'airqual'
+Group = 'stia436'
 
 SLEEP = 5
 import network
@@ -32,7 +32,7 @@ def init_sta(status):
 				print("Waiting for IP... Count:", count)
 				if count == 10:
 					print ("Can't find wifi - resetting")
-					sleep.init(SLEEP)               # pass an argument to delay awakening?
+					sleep.init(SLEEP)            # pass an argument to delay awakening?
 				utime.sleep(1)
 				count +=1 
 		print('Network Configuration:', wlan.ifconfig())
@@ -42,8 +42,8 @@ def init_sta(status):
 def init_ap(status):
 	if status == True:
 		print('activate AP_SSID')
-		ap.active(True)         
-		ap.config(essid=AP_SSID, password=AP_Password) # set the ESSID of the access point
+		ap.config(essid=AP_SSID, password=AP_Password) # set the ESSID & Password
+		ap.active(True)                                # BEFORE you activate it
 	else:
 		print('deactivate Access Point')
 		ap.active(False)

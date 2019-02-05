@@ -50,15 +50,16 @@ The I2C devices are set to the following addresses:
 
 ## Notes
 
-* [So much open source technology packed in a small space!](./D1-STIA436.jpg) 
+* [So much open source technology packed in a small space!](./D1-STIA436.jpg)
 
 * You will need the following tools with this project:
 
 	1. [esptool.py](https://github.com/espressif/esptool) - for flashing MicroPython on the D1 Lolin/Wemos Pro
 	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files on the D1.
 	1. [MicroPython](https://github.com/micropython) - if you're up for building from source!
+	1. [WebREPL files to access the ESP wirelessly](https://github.com/micropython/webrepl)
 
-* 2 Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
+* Two Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
 
 * This code base leverages several other important MicroPython repositories including but not limited to:
 	* [BME280 GitHub Repo](https://github.com/catdog2/mpy_bme280_esp8266)

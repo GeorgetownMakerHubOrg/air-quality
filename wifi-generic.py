@@ -41,11 +41,10 @@ def init_sta(status):
 
 def init_ap(status):
 	if status == True:
-		print('activate AP_SSID')
 		ap.config(essid=AP_SSID, password=AP_Password) # set the ESSID & Password
 		ap.active(True)                                # BEFORE you activate it
+		print('Network Configuration:', ap.ifconfig())
 	else:
-		print('deactivate Access Point')
 		ap.active(False)
 
 def post(Feed, value):

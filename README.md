@@ -5,7 +5,7 @@
 These include:
 
 1. Code written in Micropython
-1. Integrated battery shield and ESP8226 circuitry on single board (Lolin D1 Pro)
+1. Integrated battery shield and ESP8266 circuitry on single board (Lolin D1 Pro)
 1. Voltage monitoring on A0 Pin
 1. Stevenson case to improve air flow
 1. Crisp wiring that leverages the I2C bus

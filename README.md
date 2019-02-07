@@ -25,7 +25,7 @@ The prototype has the following components:
 	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
 	1. [MAX30105 IR Sensor (PM2.5 Sensor)](https://www.maximintegrated.com/en/products/sensors/MAX30105.html)
 	1. [ADS1115 ADC Channel Board](https://www.adafruit.com/product/1085)
-1. [USB connected Solar Shield](https://tinyurl.com/yad7xpcu)
+1. [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
 1. [2500mAh LiPo Battery](https://www.adafruit.com/product/328)
 
 The I2C devices are set to the following addresses:

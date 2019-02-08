@@ -1,6 +1,7 @@
-# from: https://github.com/shaoziyang/mpy-lib/blob/master/sensor/bmp280/bmp280.py
-import machine, micropython, utime
-import wifi
+# 
+# Let's track voltage - enable A0 to voltage on the board by solder.
+#
+import machine, micropython
 voltage = machine.ADC(0)
 
 def measure(v):

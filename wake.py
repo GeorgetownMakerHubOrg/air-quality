@@ -21,7 +21,7 @@ def main():
 	
 	aq.update(tph280.measure())
 	#aq.update(tphg680.measure())
-	#aq.update(dht11.measure())
+	aq.update(dht11.measure())
 	aq.update(analog.measure())
 	aq.update(enviro.measure())
 

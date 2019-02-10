@@ -12,6 +12,8 @@ import bme280
 i2c = I2C(scl=Pin(5), sda=Pin(4))		  # create the I2C bus
 bme280 = bme280.BME280(i2c=i2c, address=0x76)
 
+# it would easy to take 8 samples and grab the median
+
 def median(lst):
     quotient, remainder = divmod(len(lst), 2)
     if remainder:

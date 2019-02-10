@@ -30,5 +30,11 @@ def run(timer):
 		wifi.init_ap(True)
 		webrepl.start()
 
-pin0.irq(trigger=Pin.IRQ_RISING, handler=callback)
-timer.init(period=5000, mode=Timer.ONE_SHOT, callback=run)
+if machine.reset_cause() == machine.DEEPSLEEP_RESET:
+	print('Woke from a deep sleep...')
+	import wake
+	wake.main()	
+
+else:  # an opportunity to enter WebREPL after hard reset
+	pin0.irq(trigger=Pin.IRQ_RISING, handler=callback)
+	timer.init(period=5000, mode=Timer.ONE_SHOT, callback=run)

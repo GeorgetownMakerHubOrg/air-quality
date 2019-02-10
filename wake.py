@@ -16,34 +16,20 @@ def main():
 
 	start_time = utime.ticks_ms()        	      # let's track runtime (for measuring current usage)
 
-	pin2 = Pin(2, Pin.IN, Pin.PULL_UP)            # set GPIO0 as input with pullup for upgrading via WebREPL
-	button = Signal(pin2, invert=True)            # let's use Signals, eh?
-
-	# create numeric arrays for each sensor
-	tph = array.array('f',[0., 0., 0.])       # BME280 Temp, Press, & Humid
-	tphg = array.array('f',[0.,0.,0.,0.])     # BME680 Temp, Press, Humid, and Gas
-	adc = array.array('i',[0,0,0,0])          # 4 analog channgels - woot!
-	v = array.array('f',[0.])                 # Voltage
+	# data structures for sensors - uses Python's Dictionary & Lists
+	aq = {'temperature': 0, 'humidity': 0, 'pressure': 0, 'voc': 0, 'A1': 0,'A2': 0,'A3': 0,'volts':0} 
 	
-	if machine.reset_cause() == machine.DEEPSLEEP_RESET:
-		print('woke from a deep sleep')
-		tph = tph280.measure(tph)
-		#tphg = b680.measure(tphg) """fix this"""
-		adc = analog.measure(adc)
-		v = enviro.measure(v)
-		# Now let's post all - unfortunately, io.adafruit requires one data post at a time
-		wifi.init_ap(False)
-		wifi.init_sta(True)
-		wifi.post("temperature",tph[0])  # in F
-		wifi.post("pressure",tph[1])     # in kPa
-		wifi.post("humidity",tph[2])     # in %
-		wifi.post("a0",adc[0])           # Analog 0
-		wifi.post("a1",adc[1])           # Analog 1
-		wifi.post("a2",adc[2])           # Analog 2
-		wifi.post("a3",adc[3])           # Analog 3
-		wifi.post("voltage",v[0])
+
+	aq.update(tph280.measure())
+	#tphg = b680.measure() """fix this"""
+	aq.update(analog.measure())
+	aq.update(enviro.measure())
+
+	wifi.init_ap(False)
+	wifi.init_sta(True)
+	# Now let's post all - unfortunately, io.adafruit requires one data post at a time
+	for key, value in aq.items():
+		wifi.post(key,value)
 		wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-		sleep.init(SLEEP)                # see you later!
-	else:
-		print('power on or hard reset')
-		sleep.init(SLEEP)
+	sleep.init(SLEEP)                # see you later!
+	

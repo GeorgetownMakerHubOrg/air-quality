@@ -18,10 +18,11 @@ def median(lst):
         return sorted(lst)[quotient]
     return sum(sorted(lst)[quotient - 1:quotient + 1]) / 2.
 
-def measure(tph):
+def measure():
 	print("BME 280 Values:", bme280.values)
 	raw = bme280.read_compensated_data()
-	tph[0] = (raw[0]/100.)*(9/5)+32  # Fahrenheit  
-	tph[1] = raw[1]/(256*1000.)      # kPa
-	tph[2] = raw[2]/1024.            # % 
-	return(tph)
+	return {
+        "temperature": (raw[0]/100.)*(9/5)+32,    # Fahrenheit  
+        "pressure": raw[1]/(256*1000.).           # kPa
+        "humidity": raw[2]/1024.                  # % 
+    }

@@ -8,20 +8,20 @@
 SLEEP = 60
 
 def main():
-	import machine, utime, array          # ESP stuff
+	import machine, utime, array                         # ESP stuff
 	from machine import Pin, Signal
 	from sys import exit
 
-	import sleep, tph280, enviro, analog, wifi    # our stuff
+	import sleep, tph280, enviro, dht11, analog, wifi    # our stuff
 
-	start_time = utime.ticks_ms()        	      # let's track runtime (for measuring current usage)
+	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
 	# data structures for sensors - uses Python's Dictionary & Lists
 	aq = {'temperature': 0, 'humidity': 0, 'pressure': 0, 'voc': 0, 'A1': 0,'A2': 0,'A3': 0,'volts':0} 
 	
-
 	aq.update(tph280.measure())
-	#tphg = b680.measure() """fix this"""
+	#aq.update(tphg680.measure())
+	#aq.update(dht11.measure())
 	aq.update(analog.measure())
 	aq.update(enviro.measure())
 

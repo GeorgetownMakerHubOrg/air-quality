@@ -23,8 +23,8 @@ def median(lst):
 def measure():
 	print("BME 280 Values:", bme280.values)
 	raw = bme280.read_compensated_data()
-	return {
-        "temperature": (raw[0]/100.)*(9/5)+32,    # Fahrenheit  
-        "pressure": raw[1]/(256*1000.).           # kPa
-        "humidity": raw[2]/1024.                  # % 
+	return { 
+        "temperature": (raw[0]/100.)*(9/5)+32,     # Fahrenheit  
+        "pressure": raw[1]/(256*1000.0),           # kPa
+        "humidity": raw[2]/1024.0                  # % 
     }

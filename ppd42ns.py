@@ -46,7 +46,7 @@ void loop() {
 }
 
 
-Colin's Code:
+Colin's Code: 
 
 void loop() {
   // Check for button A push to pause; resume with button C

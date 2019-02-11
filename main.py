@@ -4,7 +4,7 @@
 #
 # With support from me, Pascal Girard
 #
-import utime
+import machine, utime
 from machine import Pin, Signal, Timer
 
 pin0 = Pin(0, Pin.IN, Pin.PULL_UP)   	# set GPIO0 as input with pullup

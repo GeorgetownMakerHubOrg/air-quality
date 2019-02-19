@@ -6,5 +6,8 @@ ads1x15.py
 STIA-436.gsheet
 micropython-adafruit-ads1015
 Adafruit_CircuitPython_BME680
-ClassNotes.rtf
+ClassNotes
 Collateral
+bme680
+tests
+usmbus

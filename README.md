@@ -59,11 +59,22 @@ The I2C devices are set to the following addresses:
 	1. [MicroPython](https://github.com/micropython) - if you're up for building from source!
 	1. [WebREPL files](https://github.com/micropython/webrepl) to access the ESP wirelessly
 
-* Two Test Units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
+* Two test units are in prototype: [School](https://io.adafruit.com/fpgirard/dashboards/school) and [Bethesda]().
 
 * This code base leverages several other important MicroPython repositories including but not limited to:
-	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266)
-	* [Pimoroni BME680 Repo](https://github.com/pimoroni/bme680-python)
+	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266) - 
+	* [Pimoroni BME680 Repo](https://github.com/pimoroni/bme680-python) - extensive driver
 	* [SMBus Abstration Repo](https://github.com/gkluoe/micropython-smbus) - use this i2c SMBus layer instead of the i2c.py provided with the Pimoroni BME680 repo
-	* [ADS1115 Repo](https://github.com/adafruit/micropython-adafruit-ads1015)
+	* [ADS1115 Repo](https://github.com/adafruit/micropython-adafruit-ads1015) - very straightforward design - simple.
+	* [PMS-A003 Repo]() - PM2.5, PM10 and other particle size laser detector.   Need to figure out to get the fan to run at 3.3v though.
+
+## AQ sites worth tracking
+
+* [CityOS](https://cityos-air.readme.io/) - Sarajevo-based initiative that uses the ESP, DHT-11, and PMS-003 sensors - not weather proof - Neopixels for live AQ visualization. 
+
+* [MySense](https://github.com/teusH/MySense) - Python-based repo that apparently offers a framework for attaching myriads of sensors.  Single contributor seeking funding.
+
+* [OpenAQ](https://openaq.org/) - fighting air inequality through open data, open-source tools, and a global, grassroots community.   Georgetown connections?   [Krista Hasenkopf](https://advanced.jhu.edu/about-us/faculty/christa-hasenkopf/) is a leader at OpenAQ as is [Joe Flasher](https://github.com/jflasher). Their funding primarily comes from [here](https://openaq.org/#/about?_k=28cy2c).
+
+
 

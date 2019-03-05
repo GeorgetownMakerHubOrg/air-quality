@@ -18,7 +18,7 @@ def measure():
         "pm10_env": 1,
         "pm25_env": 25,
         "pm100_env": 10,    
-        # PMS-A003 - particle count 
+        # PMS-A003 - Particle Count 
         "part_03um": 3,
         "part_05um": 5,
         "part_10um": 10,

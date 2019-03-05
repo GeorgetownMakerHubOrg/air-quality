@@ -1,3 +1,4 @@
+__pycache__
 upload
 bme280.py
 bme680.py
@@ -6,7 +7,8 @@ ads1x15.py
 STIA-436.gsheet
 micropython-adafruit-ads1015
 Adafruit_CircuitPython_BME680
-ClassNotes
+ClassNotes.txt
+ppd42ns.py
 Collateral
 bme680
 tests

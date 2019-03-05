@@ -1,7 +1,7 @@
-wifi.py
 upload
 bme280.py
 bme680.py
+config.py
 ads1x15.py
 STIA-436.gsheet
 micropython-adafruit-ads1015
@@ -11,3 +11,4 @@ Collateral
 bme680
 tests
 usmbus
+PCB

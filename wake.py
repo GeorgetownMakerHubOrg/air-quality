@@ -12,16 +12,23 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	# import sleep, tph280, enviro, dht11, analog, wifi    # our stuff
+	# import sleep, tph, enviro, dht11, analog, wifi    # our stuff
 	import sleep, wifi, stub                              # minimum stuff
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
 	# data structures for sensors - uses Python's dictionary & lists
+	"""aq = [ {'field': 'field1', 'parameter': 'temperature', 'value': '0'},
+	       {'field': 'field2', 'parameter': 'humidity', 'value': '0'},
+	       {'field': 'field3', 'parameter': 'pressure', 'value': '0'},
+	       {'field': 'field4', 'parameter': 'voc', 'value': '0'},
+	       {'field': 'field5', 'parameter': 'pm25', 'value': '0'},
+	       {'field': 'field6', 'parameter': 'volts', 'value': '0'}]. """
+
 	aq = {'temperature': 0, 'humidity': 0, 'pressure': 0, 'voc': 0, 'A1': 0,'A2': 0,'A3': 0,'volts':0} 
 	
-	#aq.update(tph280.measure())
-	#aq.update(tphg680.measure())
+	#aq.update(tph.measure())
+	#aq.update(tphg.measure())
 	#aq.update(ppd42.measure())
 	#aq.update(dht11.measure())
 	#aq.update(analog.measure())

@@ -11,20 +11,20 @@ def measure():
         "pressure": 100000,
         "voc": 80,
         # PMS-A003 - Concentration Units (standard)
-        "pm10_std": 1,
-        "pm25_std": 25,
-        "pm100_std": 10,
+        "pm10-std": 1,
+        "pm25-std": 25,
+        "pm100-std": 10,
         # PMS-A003 - Concentration Units (environmental)
-        "pm10_env": 1,
-        "pm25_env": 25,
-        "pm100_env": 10,    
+        "pm10-env": 1,
+        "pm25-env": 25,
+        "pm100-env": 10,    
         # PMS-A003 - Particle Count 
-        "part_03um": 3,
-        "part_05um": 5,
-        "part_10um": 10,
-        "part_25um": 25,
-        "part_50um": 50,
-        "part_100um": 100,
+        "part-03um": 3,
+        "part-05um": 5,
+        "part-10um": 10,
+        "part-25um": 25,
+        "part-50um": 50,
+        "part-100um": 100,
         # MCU variables
         "volts": 3.3
     }

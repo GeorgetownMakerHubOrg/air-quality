@@ -1,7 +1,7 @@
 #
 # Configure this file by:
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
-# 2. renaming this file to "wifi.py"
+# 2. renaming this file to "config.py"
 #
 # Geolocation information - default on Carroll's statue: lat=38.907606, lon=-77.072257
 

@@ -25,7 +25,7 @@ def main():
 	       {'field': 'field5', 'parameter': 'pm25', 'value': '0'},
 	       {'field': 'field6', 'parameter': 'volts', 'value': '0'}]. """
 
-	aq = {'temperature': 0, 'humidity': 0, 'pressure': 0, 'voc': 0, 'A1': 0,'A2': 0,'A3': 0,'volts':0} 
+	aq = {} 
 	
 	#aq.update(tph.measure())
 	#aq.update(tphg.measure())

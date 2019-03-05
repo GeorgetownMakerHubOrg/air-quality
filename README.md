@@ -5,7 +5,7 @@
 These include:
 
 1. Code written in Micropython
-1. Integrated battery shield and ESP8266 circuitry on single board (Lolin D1 Pro)
+1. Integrated battery shield and Expressif ESP32 WROOM-32 circuitry on single board (Lolin D32)
 1. Voltage monitoring on A0 Pin
 1. Stevenson case to improve air flow
 1. Crisp wiring that leverages the I2C bus
@@ -18,7 +18,7 @@ These include:
 
 The prototype has the following components:
 
-1. [Wemos D1 Mini Pro](***)
+1. [LOLIN D32 ESP32 Board ](https://wiki.wemos.cc/products:d32:d32)
 1. [Stevenson enclosure from Thingiverse](http://www.thingiverse.com/thing:2282869) - courtesy [Open Green Energy](https://www.opengreenenergy.com/)
 1. 4 I2C-based Sensors:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)

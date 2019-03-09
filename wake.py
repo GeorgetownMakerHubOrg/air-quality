@@ -5,7 +5,9 @@
 # Don't forget to enable A0 battery as well as sleep (16 & Reset) - solder!
 # 
 # 
-SLEEP = 60
+import config
+
+sleep_interval = config.SLEEP
 
 def main():
 	import machine, utime, array                         # ESP stuff
@@ -42,5 +44,5 @@ def main():
 	for key, value in aq.items():
 		wifi.post(key,value)
 	wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
-	sleep.init(SLEEP)                # see you later!
+	sleep.init(sleep_interval)                # see you later!
 	

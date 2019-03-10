@@ -1,11 +1,5 @@
+# Author: Pascal Girard
 #
-# Configure this file by:
-# 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
-# 2. renaming this file to "wifi.py"
-#
-# Geolocation information - format is: ***
-
-
 import network, utime   # Micropython modules
 import sleep, config    # Our modules
 
@@ -25,10 +19,8 @@ group = config.GROUP
 lat = config.LATITUDE
 lon = config.LONGITUDE
 
-# Station object
+# Network objects
 wlan = network.WLAN(network.STA_IF)
-
-# Access Point object
 ap = network.WLAN(network.AP_IF) 
 
 def init_sta(status):

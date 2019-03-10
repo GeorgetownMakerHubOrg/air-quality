@@ -25,9 +25,9 @@ def run(timer):
 		wake.main()	
 	else:
 		print('Upgrading...')
-		import webrepl, wifi
-		wifi.init_sta(False)
-		wifi.init_ap(True)
+		import webrepl, iot
+		iot.init_sta(False)
+		iot.init_ap(True)
 		webrepl.start()
 
 if machine.reset_cause() == machine.DEEPSLEEP_RESET:

@@ -1,5 +1,6 @@
 #
 # Configure this file by:
+
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information
 # 2. renaming this file to "config.py"
 #
@@ -21,5 +22,5 @@ GROUP = 'Adafruit-Group-Name'
 # ThingSpeak - Write API Key
 TS_KEY = 'THINGSPEAKWRITEKEY'
 
-# Sleep time for wake/sleep cycle
-SLEEP = 60
+# Sleep time for wake/sleep cycle in milliseconds
+SLEEP = 60*1000

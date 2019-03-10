@@ -14,8 +14,8 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	# import sleep, tph, enviro, dht11, analog, wifi    # our stuff
-	import sleep, wifi, stub                              # minimum stuff
+	# import sleep, tph, enviro, dht11, analog, iot    # our stuff
+	import sleep, iot, stub, tphg                      # our stuff
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
@@ -30,19 +30,19 @@ def main():
 	aq = {} 
 	
 	#aq.update(tph.measure())
-	#aq.update(tphg.measure())
+	aq.update(tphg.measure())
 	#aq.update(ppd42.measure())
 	#aq.update(dht11.measure())
 	#aq.update(analog.measure())
 	#aq.update(enviro.measure())
-	aq.update(stub.measure())
+	#aq.update(stub.measure())
 	print(aq)
 	
-	wifi.init_ap(False)
-	wifi.init_sta(True)
+	iot.init_ap(False)
+	iot.init_sta(True)
 	# Now let's post all - unfortunately, io.adafruit requires one data post at a time
 	for key, value in aq.items():
-		wifi.post(key,value)
-	wifi.post("runtime", ((utime.ticks_ms() - start_time)/1000))
+		iot.post(key,value)
+	iot.post("runtime", ((utime.ticks_ms() - start_time)/1000))
 	sleep.init(sleep_interval)                # see you later!
 	

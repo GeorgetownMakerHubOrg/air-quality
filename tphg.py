@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # full credit for this code goes to: https://github.com/pimoroni/bme680-python (see examples/read-all.py)
-# also look at: https://github.com/BoschSensortec/BME680_driver
+# also look at: https://github.com/BoschSensortec/BME680_driver for configuration information
+# this driver is too large for ESP8266's memory.
 #
 import bme680
 import time
@@ -9,8 +10,8 @@ from machine import I2C, Pin
 from usmbus import SMBus
 from bme680 import constants
 
-i2c_bus = SMBus(scl=Pin(22), sda=Pin(21))
-sensor = bme680.BME680(i2c_device=i2c_bus, i2c_addr=constants.I2C_ADDR_SECONDARY)
+i2c = SMBus(scl=Pin(22), sda=Pin(21)).    # ESP32 only
+sensor = bme680.BME680(i2c_device=i2c, i2c_addr=constants.I2C_ADDR_SECONDARY)
 
 # These oversampling settings can be tweaked to 
 # change the balance between accuracy and noise in

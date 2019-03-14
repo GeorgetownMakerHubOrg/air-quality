@@ -9,7 +9,8 @@ import array
 from machine import I2C, Pin   # create an I2C bus object for all I2C-based sensors.
 import bme280
 
-i2c = I2C(scl=Pin(5), sda=Pin(4))		  # create the I2C bus
+#i2c = I2C(scl=Pin(5), sda=Pin(4))       # create I2C bus on ESP8266
+i2c = I2C(scl=Pin(22), sda=Pin(21))		  # create I2C bus on Lolin ESP32
 bme280 = bme280.BME280(i2c=i2c, address=0x76)
 
 # it would easy to take 8 samples and grab the median

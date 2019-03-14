@@ -10,28 +10,28 @@ another driver:
 class of pmsa003
 set registers
 get registers
-"""
 
 
-"""
-class pmsA003():
+
+
+class pmsa003():
     def __init__(self, dev):
-        self.serial = serial.Serial(dev, baudrate=9600, timeout=3)
+        from machine import UART
+        self.uart=UART(1,9600)
+
     def __exit__(self, exc_type, exc_value, traceback):
-        self.serial.close()
+        self.uart.close()
 
     
 
-    def setActive():
-    def setPassive():
-    def set_awake(self):
-        normalcmd = b'\x42\x4d\xe4\x00\x01\x01\x74'
-        ary = bytearray(normalcmd)
-        self.serial.write(ary)
-    def set_sleep(self):
-        idldcmd = b'\x42\x4d\xe4\x00\x00\x01\x73'
-        ary = bytearray(idelcmd)
-        self.serial.write(ary)
+    # def setActive():
+    # def setPassive():
+    def set_normal(self):
+        normal = b'\x42\x4d\xe4\x00\x01\x01\x74'
+        self.uart.write(bytearray(normal))
+    def set_standby(self):
+        standby = b'\x42\x4d\xe4\x00\x00\x01\x73'
+        self.uart.write(bytearray(standby))
 
     def verify_data(self):
         if not self.data:
@@ -80,9 +80,6 @@ except ImportError:
     import ustruct as struct
 
 # Connect the Sensor's TX pin to the board's RX pin
-uart = busio.UART(board.TX, board.RX, baudrate=9600)
-
-
 
 # Fix everything above this
 buffer = []

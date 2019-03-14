@@ -29,13 +29,14 @@ def main():
 
 	aq = {} 
 	
-	#aq.update(tph.measure())
-	aq.update(tphg.measure())
-	#aq.update(ppd42.measure())
-	#aq.update(dht11.measure())
 	#aq.update(analog.measure())
+	#aq.update(dht11.measure())
 	#aq.update(enviro.measure())
-	#aq.update(stub.measure())
+	#aq.update(pm25.measure())
+	#aq.update(ppd42.measure())
+	#aq.update(tph.measure())
+	#aq.update(tphg.measure())
+	aq.update(stub.measure())	# when you only want the MCU and no sensors.
 	print(aq)
 	
 	iot.init_ap(False)

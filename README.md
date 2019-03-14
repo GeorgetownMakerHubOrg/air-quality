@@ -24,21 +24,18 @@ The prototype has the following components:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
 	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
 	1. [MAX30105 IR Sensor (PM2.5 Sensor)](https://www.maximintegrated.com/en/products/sensors/MAX30105.html)
-	1. [ADS1115 ADC Channel Board](https://www.adafruit.com/product/1085)
 1. [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
-1. [2500mAh LiPo Battery](https://www.adafruit.com/product/328)
+1. [Optional 3000mAh 18650 Lithium Ion Battery](https://www.ebay.com/itm/202512035904)
 
-The I2C devices are set to the following addresses:
+The available I2C devices are set to the following addresses:
 
-* 72 (0x48) - ADS1115 Analog-To-Digital Converter
-* 87 (0x57) - MAX30105 IR Sensor
 * 118 (0x76) - BME280 Sensor
 * 119 (0x77) - BME680 Sensor
 
 ## Open Actions/Areas of Investigation & Improvement:
 
 1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?  Currently, the unit draws 75 mA running and 2 mA in deep sleep - much of the draw during sleep is from the sensors.  At a 1 minute sampling, we can go about 10 days (without using the 680 or 30105) 
-1. Better understanding of the accuracy and target purpose of the MAX30105 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor).  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
+1. Better understanding of the accuracy and target purpose of the Bosch BME680 Sensors.  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
 1. This repo is migrating to the ESP32 MCU.   There are minor implementation differences that we'll need to manage (eg. sleep-ESP8266.py vs. sleep.py)
 1. Integration with other IoT sites - ThingSpeak, Wunderground.
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
@@ -66,8 +63,6 @@ The I2C devices are set to the following addresses:
 	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266) - 
 	* [Pimoroni BME680 Repo](https://github.com/pimoroni/bme680-python) - extensive driver
 	* [SMBus Abstration Repo](https://github.com/gkluoe/micropython-smbus) - use this i2c SMBus layer instead of the i2c.py provided with the Pimoroni BME680 repo
-	* [ADS1115 Repo](https://github.com/adafruit/micropython-adafruit-ads1015) - very straightforward design - simple.
-	* [PMS-A003 Repo]() - PM2.5, PM10 and other particle size laser detector.   Need to figure out to get the fan to run at 3.3v though.
 
 ## AQ sites worth tracking
 

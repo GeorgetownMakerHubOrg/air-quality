@@ -14,8 +14,7 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	# import sleep, tph, enviro, dht11, analog, iot    # our stuff
-	import sleep, iot, stub, tphg                      # our stuff
+	import sleep, iot, stub, tphg, pm25                  # our stuff - comment this line for stub.py
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
@@ -35,14 +34,16 @@ def main():
 	#aq.update(pm25.measure())
 	#aq.update(ppd42.measure())
 	#aq.update(tph.measure())
-	#aq.update(tphg.measure())
-	aq.update(stub.measure())	# when you only want the MCU and no sensors.
-	print(aq)
-	
+	aq.update(tphg.measure())
+	#aq.update(stub.measure())	# when you only want the MCU and no sensors.
+	# for reasons I can't explain, UART takes time to setup - so do this last? WTF.
+	aq.update(pm25.measure())
+
 	iot.init_ap(False)
 	iot.init_sta(True)
 	# Now let's post all - unfortunately, io.adafruit requires one data post at a time
 	for key, value in aq.items():
+		# print('K/V:', key, value)
 		iot.post(key,value)
 	iot.post("runtime", ((utime.ticks_ms() - start_time)/1000))
 	sleep.init(sleep_interval)                # see you later!

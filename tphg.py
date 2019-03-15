@@ -10,7 +10,7 @@ from machine import I2C, Pin
 from usmbus import SMBus
 from bme680 import constants
 
-i2c = SMBus(scl=Pin(22), sda=Pin(21)).    # ESP32 only
+i2c = SMBus(scl=Pin(22), sda=Pin(21))    # ESP32 only
 sensor = bme680.BME680(i2c_device=i2c, i2c_addr=constants.I2C_ADDR_SECONDARY)
 
 # These oversampling settings can be tweaked to 

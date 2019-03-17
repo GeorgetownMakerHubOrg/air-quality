@@ -6,13 +6,13 @@ These include:
 
 1. Code written in Micropython
 1. Integrated battery shield and Expressif ESP32 WROOM-32 circuitry on single board (Lolin D32)
-1. Voltage monitoring on A0 Pin
 1. Stevenson case to improve air flow
 1. Crisp wiring that leverages the I2C bus
 1. Full deep-sleep & wake cycling
-1. Four (4) 16bit Analog Channels for ADC sensors
-1. Significant cost reduction (50% reduction)
+1. Significant cost reduction (66% reduction)
 1. Lithium Ion Battery with 20% greater mAh at 87% cost savings over LiPo
+1. Four (4) 16bit Analog Channels for ADC sensors
+1. Voltage monitoring on a ADC channel
 
 ## Prototype Components
 
@@ -20,10 +20,9 @@ The prototype has the following components:
 
 1. [LOLIN D32 ESP32 Board ](https://wiki.wemos.cc/products:d32:d32)
 1. [Stevenson enclosure from Thingiverse](http://www.thingiverse.com/thing:2282869) - courtesy [Open Green Energy](https://www.opengreenenergy.com/)
-1. 4 I2C-based Sensors:
+1. I2C-based Sensors:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
 	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
-	1. [MAX30105 IR Sensor (PM2.5 Sensor)](https://www.maximintegrated.com/en/products/sensors/MAX30105.html)
 1. [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
 1. [Optional 3000mAh 18650 Lithium Ion Battery](https://www.ebay.com/itm/202512035904)
 
@@ -35,13 +34,9 @@ The available I2C devices are set to the following addresses:
 ## Open Actions/Areas of Investigation & Improvement:
 
 1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?  Currently, the unit draws 75 mA running and 2 mA in deep sleep - much of the draw during sleep is from the sensors.  At a 1 minute sampling, we can go about 10 days (without using the 680 or 30105) 
-<<<<<<< HEAD
 1. Better understanding of the accuracy and target purpose of the Bosch BME680 Sensors.  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
 1. This repo is migrating to the ESP32 MCU.   There are minor implementation differences that we'll need to manage (eg. sleep-ESP8266.py vs. sleep.py)
-=======
-1. Better understanding of the accuracy and target purpose of the MAX30105 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor).  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
-1. This repo is migrating to the ESP32 MCU.   There are minor implementation differences that we'll need to manage via comments (eg. sleep.py)
->>>>>>> 86cbf584b020596eef5433e3fbfe19ac6c0e8beb
+1. Better understanding of the accuracy and target purpose of the PMS-A003 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor).  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
 1. Integration with other IoT sites - ThingSpeak, Wunderground.
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
 

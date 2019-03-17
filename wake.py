@@ -18,14 +18,6 @@ def main():
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
-	# data structures for sensors - uses Python's dictionary & lists
-	"""aq = [ {'field': 'field1', 'parameter': 'temperature', 'value': '0'},
-	       {'field': 'field2', 'parameter': 'humidity', 'value': '0'},
-	       {'field': 'field3', 'parameter': 'pressure', 'value': '0'},
-	       {'field': 'field4', 'parameter': 'voc', 'value': '0'},
-	       {'field': 'field5', 'parameter': 'pm25', 'value': '0'},
-	       {'field': 'field6', 'parameter': 'volts', 'value': '0'}]. """
-
 	aq = {} 
 	
 	#aq.update(analog.measure())
@@ -41,10 +33,10 @@ def main():
 
 	iot.init_ap(False)
 	iot.init_sta(True)
-	# Now let's post all - unfortunately, io.adafruit requires one data post at a time
-	for key, value in aq.items():
-		# print('K/V:', key, value)
-		iot.post(key,value)
-	iot.post("runtime", ((utime.ticks_ms() - start_time)/1000))
+	# Now let's post all
+	
+	iot.io_post(aq)
+	#iot.io_post({"runtime": ((utime.ticks_ms() - start_time)/1000)})
+	print("Runtime is:", (utime.ticks_ms() - start_time)/1000)
 	sleep.init(sleep_interval)                # see you later!
 	

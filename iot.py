@@ -49,15 +49,22 @@ def init_ap(status):
 	else:
 		ap.active(False)
 
-def post(feed, value):
+def io_post(aq):							# Adafruit.io POSTing
 	import json, urequests
 	headers = {'X-AIO-Key': aio_key,'Content-Type': 'application/json'}
-	url='https://io.adafruit.com/api/v2/'+user+'/feeds/'+group+'.'+feed+'/data.json'
+	url='https://io.adafruit.com/api/v2/'+user+'/groups/'+group+'/data'
 	# print('URL is:', url)
-	data = json.dumps({"value": value, "lat":lat, "lon":lon})
+	aqlist = []
+	for key, value in aq.items():
+		aqlist.append({"key": key, "value": value})
+	print("Mylist", aqlist)
+	api_list = { "location": {"lat": lat, "lon": lon}, "feeds": aqlist}
+	print("API List:", api_list)
+	data = json.dumps(api_list)
 	# POST response
 	try:
 		response = urequests.post(url, headers=headers, data=data)
+		print(response.text)
 	except OSError as err:
 		print("OS error: {0}".format(err))
 		sleep.init(sleep_interval)

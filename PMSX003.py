@@ -1,4 +1,9 @@
 """
+Pascal Girard
+# I'd like to create a PMSA003 Class to:
+# read data
+# set the device into active/passive; normal/idle mode
+
 set normal mode
 Run for 60 seconds
 In a circular queue, grab the min, max, average of last 32 values for all
@@ -10,9 +15,6 @@ another driver:
 class of pmsa003
 set registers
 get registers
-
-
-
 
 class pmsa003():
     def __init__(self, dev):

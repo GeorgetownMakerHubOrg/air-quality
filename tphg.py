@@ -4,7 +4,9 @@
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
 #
+# With the exception of implementing a ring buffer to eliminate memory over-allocation, 
 # full credit for this code goes to: https://github.com/pimoroni/bme680-python (see examples/read-all.py)
+# 
 # also look at: https://github.com/BoschSensortec/BME680_driver for configuration information
 # this driver is too large for ESP8266's memory.
 #

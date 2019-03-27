@@ -19,7 +19,7 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	import sleep, iot, stub, tphg, pm25                  # our stuff - comment this line for stub.py
+	import sleep, iot, stub, tphg, pd25                  # our stuff - comment this line for stub.py
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
@@ -34,7 +34,7 @@ def main():
 	aq.update(tphg.measure())
 	#aq.update(stub.measure())	# when you only want the MCU and no sensors.
 	# for reasons I can't explain, UART takes time to setup - so do this last? WTF.
-	aq.update(pm25.measure())
+	aq.update(pd25.measure())
 
 	iot.init_ap(False)
 	iot.init_sta(True)

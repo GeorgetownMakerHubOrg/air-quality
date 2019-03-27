@@ -10,6 +10,8 @@ Adafruit_CircuitPython_BME680
 ClassNotes.txt
 ppd42ns.py
 Collateral
+Class
+hwtest.py
 bme680
 tests
 usmbus

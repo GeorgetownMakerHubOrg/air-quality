@@ -19,7 +19,7 @@ These include:
 The prototype has the following components:
 
 1. [LOLIN D32 ESP32 Board ](https://wiki.wemos.cc/products:d32:d32)
-1. [Stevenson enclosure from Thingiverse](http://www.thingiverse.com/thing:2282869) - courtesy [Open Green Energy](https://www.opengreenenergy.com/)
+1. [Stevenson enclosure from Acurite](https://tinyurl.com/y52xd67g)
 1. I2C-based Sensors:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
 	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)

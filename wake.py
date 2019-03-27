@@ -1,3 +1,8 @@
+# The MIT License (MIT)
+# Copyright (c) F. Pascal Girard
+# https://opensource.org/licenses/MIT
+# STIA436 Course - Spring 2019
+# Professor Colin McCormick & Father Chris Wagner
 #
 # Code improvement suggestions:
 #   1. how about one post to submit all new data?  C'mon Adafruit

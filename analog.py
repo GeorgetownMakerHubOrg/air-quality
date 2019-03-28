@@ -1,8 +1,7 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# The MIT License (MIT) - https://opensource.org/licenses/MIT
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
+# F. Pascal Girard
 #
 # ADS1x15 code from https://github.com/adafruit/micropython-adafruit-ads1015
 # Keep in mind that this I2C board can have up to 4 addresses using the address pin.

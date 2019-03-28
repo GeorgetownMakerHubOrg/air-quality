@@ -1,8 +1,7 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# The MIT License (MIT) - https://opensource.org/licenses/MIT
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
+# F. Pascal Girard
 #
 # Configure this file by:
 # 1. changing the Station, Access Point, and Io.Adafruit.Com Login Information

@@ -1,8 +1,7 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# The MIT License (MIT) - https://opensource.org/licenses/MIT
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
+# F. Pascal Girard
 #
 import machine, utime
 from machine import Pin, Signal, Timer

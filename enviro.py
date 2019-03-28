@@ -1,9 +1,8 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# The MIT License (MIT) - https://opensource.org/licenses/MIT
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
-# 
+# F. Pascal Girard
+#
 # Let's track voltage - enable A0 to voltage on the board by solder.
 # What other machine states/conditions do we want to record?
 # Using only this module will also allow us to measure current consumption of the ESP without sensor load

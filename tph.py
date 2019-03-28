@@ -1,8 +1,7 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# The MIT License (MIT) - https://opensource.org/licenses/MIT
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
+# F. Pascal Girard
 #
 # BME280 code from https://github.com/catdog2/mpy_bme280_esp8266
 # Given that we might have multiple Bosch sensors on I2C bus, we might have to alter the

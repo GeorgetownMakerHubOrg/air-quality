@@ -11,7 +11,7 @@ These include:
 1. Full deep-sleep & wake cycling
 1. Significant cost reduction (66% reduction)
 1. Lithium Ion Battery with 20% greater mAh at 87% cost savings over LiPo
-1. Four (4) 16bit Analog Channels for ADC sensors
+1. Optional four (4) 16bit Analog Channels for ADC sensors
 1. Voltage monitoring on a ADC channel
 
 ## Prototype Components
@@ -23,7 +23,8 @@ The prototype has the following components:
 1. I2C-based Sensors:
 	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
 	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
-1. [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
+1. Two (2) Plantower [PMS-A003 Particle Sensors](https://datasheet.lcsc.com/szlcsc/Beijing-Plantower-PMSA003-A_C132744.pdf)
+1. Optional [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
 1. [Optional 3000mAh 18650 Lithium Ion Battery](https://www.ebay.com/itm/202512035904)
 
 The available I2C devices are set to the following addresses:
@@ -74,6 +75,5 @@ The available I2C devices are set to the following addresses:
 
 * [Nature publishes a good article on air quality monitoring in East Africa](https://www.nature.com/articles/d41586-018-04330-x) - it also raises GeoHealth's work in [Kenya and Tanzania](https://geohealthhub.org/2016/06/30/usc-training-launches-a-new-era-of-air-pollution-health-research-in-eastern-africa/) which is run out of [NIH](https://www.fic.nih.gov/Programs/Pages/environmental-occupational.aspx).
 
-* 
 
 

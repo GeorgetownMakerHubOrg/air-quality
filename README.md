@@ -72,5 +72,8 @@ The available I2C devices are set to the following addresses:
 
 * [OpenAQ](https://openaq.org/) - fighting air inequality through open data, open-source tools, and a global, grassroots community.   Georgetown connections?   [Krista Hasenkopf](https://advanced.jhu.edu/about-us/faculty/christa-hasenkopf/) is a leader at OpenAQ as is [Joe Flasher](https://github.com/jflasher). Their funding primarily comes from [here](https://openaq.org/#/about?_k=28cy2c).
 
+* [Nature publishes a good article on air quality monitoring in East Africa](https://www.nature.com/articles/d41586-018-04330-x) - it also raises GeoHealth's work in [Kenya and Tanzania](https://geohealthhub.org/2016/06/30/usc-training-launches-a-new-era-of-air-pollution-health-research-in-eastern-africa/) which is run out of [NIH](https://www.fic.nih.gov/Programs/Pages/environmental-occupational.aspx).
+
+* 
 
 

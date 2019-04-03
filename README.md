@@ -34,7 +34,7 @@ The available I2C devices are set to the following addresses:
 
 ## Installation
 
-This installation process has been tested on Linux and Mac OSX systems.  To install this AQ monitoring software you will need to:
+This installation process has been tested on Linux and Mac OSX systems.  Follow me:
 
 1. Before you begin - Have you:
 	- Confirmed access to Wifi and have obtained the Wifi SSID and password?
@@ -43,7 +43,7 @@ This installation process has been tested on Linux and Mac OSX systems.  To inst
 	- Located a site suitable for hosting this monitor?
 	- Chosen a text editor suitable for modifying Python files - Sublime Text and Nano are great choices.
 
-1. With these out of the way:
+1. With these out of the way, you need to:
 
 	- Confirm that Python 2/3 has been installed on your computer.
 	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  

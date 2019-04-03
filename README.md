@@ -39,13 +39,15 @@ This installation process has been tested on Linux and Mac OSX systems.  To inst
 1. Confirm that Python 3 has been installed on your computer.
 1. Install esptool.py and ampy.py tools on your system. Follow links below to get these packages installed.  Understand how to invoke them from the command line.  
 1. Download/Clone this Git repository to your computer.
+1. Choose a text editor that you will need to use to edit these files - Sublime Text is an excellent choice.
 1. Unzip it thereby creating a directory called "air-quality-master".
 1. Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
 1. Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
 1. Edit the wake.py file to selectively measure from different sensors.  The stub.py can be used when no sensors are available but you want to test the ESP and its connectivity to the IOT service.
 1. Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
-1. Use the "utilities/upload" script to install Micropython 1.10 on the ESP32 and upload the air quality files.
-1. Run hwtest to confirm that the ESP32 can communicate with the sensors.
+1. Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
+1. Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+     import hwtest
 1. Rename the main\~.py file to main.py so that it runs automatically at boot time.
 1. Report any issues to me - fpg13@georgetown.edu
 

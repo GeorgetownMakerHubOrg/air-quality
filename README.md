@@ -53,8 +53,8 @@ The available I2C devices are set to the following addresses:
 
 * You will need the following tools with this project:
 
-	1. [esptool.py](https://github.com/espressif/esptool) - for flashing MicroPython on the D1 Lolin/Wemos Pro
-	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files on the D1.
+	1. [esptool.py](https://github.com/espressif/esptool) - for flashing MicroPython on the ESP32 Lolin/Wemos Pro
+	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files on the ESP32.
 	1. [MicroPython](https://github.com/micropython) - if you're up for building from source!
 	1. [WebREPL files](https://github.com/micropython/webrepl) to access the ESP wirelessly
 

@@ -45,7 +45,7 @@ This installation process has been tested on Linux and Mac OSX systems.  To inst
 
 1. With these out of the way:
 
-	- Confirm that Python 3 has been installed on your computer.
+	- Confirm that Python 2/3 has been installed on your computer.
 	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
 	- Download/Clone this Git repository to a directory of your choice on your computer.
 	- Unzip this archive which will create a directory called "air-quality-master".

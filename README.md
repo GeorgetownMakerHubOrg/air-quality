@@ -53,7 +53,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
 	- Download/Clone this Git repository to a directory of your choice on your computer.
 	- Unzip this archive which will create a directory called "air-quality-master".
-	- Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
+	- Fetch the required Python library modules listed below from their Git repositories and put these libraries into the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules (bme680 and usmbus have library sub-directories)
 	- Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
 	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
 	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.

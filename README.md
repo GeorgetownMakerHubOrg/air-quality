@@ -34,7 +34,7 @@ The available I2C devices are set to the following addresses:
 
 ## Installation
 
-This installation process has been tested on Linux and Mac OS Z systems.  To install this AQ monitoring software you will need to:
+This installation process has been tested on Linux and Mac OSX systems.  To install this AQ monitoring software you will need to:
 
 1. Confirm that Python 3 has been installed on your computer.
 1. Install esptool.py and ampy.py tools on your system. Follow links below to get these packages installed.  Understand how to invoke them from the command line.  

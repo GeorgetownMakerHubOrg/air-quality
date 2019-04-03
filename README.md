@@ -63,7 +63,7 @@ The available I2C devices are set to the following addresses:
 	1. Basic hardware testing to ensure that sensors are properly connected and minimally operating (hwtest.py)
 	1. Confirming that connectivity to Adafruit IO is working properly (can be run on laptop or ESP32) (testiot.py)
 	1. Automatically creating an Adafruit IO group unique to each monitor (groupmonitor.py) 
-	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (
+	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (esp32-[version].bin
 	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL before you have it automatically run the AQ code on boot up.
 
 * This code base leverages several other important MicroPython repositories including but not limited to:

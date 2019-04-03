@@ -34,27 +34,28 @@ The available I2C devices are set to the following addresses:
 
 ## Open Actions/Areas of Investigation & Improvement:
 
-1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery?  Currently, the unit draws 75 mA running and 2 mA in deep sleep - much of the draw during sleep is from the sensors.  At a 1 minute sampling, we can go about 10 days (without using the 680 or PMS-A003) 
-1. Better understanding of the accuracy and target purpose of the Bosch BME680 Sensors.  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
-1. This repo is migrating to the ESP32 MCU.   There are minor implementation differences that we'll need to manage (eg. sleep or upgrade method)
-1. Better understanding of the accuracy and target purpose of the PMS-A003 and Bosch BME680 Sensors.  More work is needed here but here's [a good starting point](https://hackaday.io/project/18518-iteration-8/log/55721-a-first-attempt-at-figuring-out-the-max30105-air-particle-sensor).  More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  Let's also look at [laser-based PM2.5 sensors with fans](https://aqicn.org/sensor/pms5003-7003/).  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.  A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
+1. This repo has migrated to the ESP32 MCU.   There are minor implementation differences that we'll need to manage (eg. sleep or upgrade method).
+1. Better understanding of the accuracy and target purpose of the PMS-A003 and Bosch BME680 Sensors. [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.
 1. Integration with other IoT sites - ThingSpeak, Wunderground.  As a class, we also need to come to some resolution as to how we want to integrate the collection of data from multiple sites.  Does each site have its own IOT service?   Do we have a single IOT account and assign each sensor to be its own channel (thingspeak) or group (adafruit.io)?   The latter would require that we share a single API key with all interested parties.  Might not be a bad thing to do since we're collecting non-sensitive, non-critical data over the past 60 days. 
+1. More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
+1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery? 
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
 
 ## Possible Improvements:
 
-1. Set alerts using IFTTT webhooks to alert when battery hits a threshold.
+1. Set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
 1. Implement ntp so that we can sample at given times (and not just intervals)
-1. We still need to either combine the results of redundant sensors or report both
-1. The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
-1. On a battery monitor when the lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
+1. Power/Battery improvements:
+	1. We still need to either combine the results of redundant sensors or report both
+	1. The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
+	1. On a battery monitor when the lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
 
 ## Notes
 
 * You will need the following tools with this project:
 
 	1. [esptool.py](https://github.com/espressif/esptool) - for flashing MicroPython on the ESP32 Lolin/Wemos Pro
-	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files on the ESP32.
+	1. [ampy](https://github.com/pycampers/ampy) - for uploading/downloading/list files to/from the ESP32.
 	1. [MicroPython](https://github.com/micropython) - if you're up for building from source!
 	1. [WebREPL files](https://github.com/micropython/webrepl) to access the ESP wirelessly
 
@@ -64,7 +65,7 @@ The available I2C devices are set to the following addresses:
 	1. Confirming that connectivity to Adafruit IO is working properly (can be run on laptop or ESP32) (testiot.py)
 	1. Automatically creating an Adafruit IO group unique to each monitor (groupmonitor.py) 
 	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (esp32-[version].bin
-	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL before you have it automatically run the AQ code on boot up.
+	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL interface before main.py automatically runs the AQ code on boot up.
 
 * This code base leverages several other important MicroPython repositories including but not limited to:
 	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266) - 

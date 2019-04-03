@@ -36,16 +36,18 @@ The available I2C devices are set to the following addresses:
 
 This installation process has been tested on Linux and Mac OSX systems.  Follow me:
 
-1. Before you begin - Have you:
+1. Before you install MicroPython - Have you:
 	- Confirmed access to Wifi and have obtained the Wifi SSID and password?
 	- Located your Adafruit IO Key and Username?
 	- Identified how you will power the unit with a USB cable?
 	- Located a site suitable for hosting this monitor?
-	- Chosen a text editor suitable for modifying Python files - Sublime Text and Nano are great choices.
+	- Checked that Python Version 2 or Version 3 has been installed on your computer.
+	- Downloaded CoolTerm for the Mac or Putty for the PC and configure it to support the ESP32.
+		- CoolTerm Configuration: Options->Terminal-"115200", Check "Filter ASCII Escape Sequences" and "Handle BS and DEL Characters" boxes.
+	- Chosen a text editor that you're comfortable using to modify Python files.  Sublime Text is a great choice.
 
-1. With these out of the way, you need to:
+1. With these basics out of the way:
 
-	- Confirm that Python 2/3 has been installed on your computer.
 	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
 	- Download/Clone this Git repository to a directory of your choice on your computer.
 	- Unzip this archive which will create a directory called "air-quality-master".
@@ -54,7 +56,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
 	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
 	- Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
-	- Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+	- On a Macintosh use CoolTerm to access the ESP32.   the tool "screen" or Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
 	     import hwtest
 	- Rename the main\~.py file to main.py so that it runs automatically at boot time.
 

@@ -32,9 +32,26 @@ The available I2C devices are set to the following addresses:
 * 118 (0x76) - BME280 Sensor
 * 119 (0x77) - BME680 Sensor
 
+## Installation
+
+This installation process has been tested on Linux and Mac OS Z systems.  To install this AQ monitoring software you will need to:
+
+1. Confirm that Python 3 has been installed on your computer.
+1. Install esptool.py and ampy.py tools on your system. Follow links below to get these packages installed.  Understand how to invoke them from the command line.  
+1. Download/Clone this Git repository to your computer.
+1. Unzip it thereby creating a directory called "air-quality-master".
+1. Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
+1. Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
+1. Edit the wake.py file to selectively measure from different sensors.  The stub.py can be used when no sensors are available but you want to test the ESP and its connectivity to the IOT service.
+1. Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
+1. Use the "utilities/upload" script to install Micropython 1.10 on the ESP32 and upload the air quality files.
+1. Run hwtest to confirm that the ESP32 can communicate with the sensors.
+1. Rename the main\~.py file to main.py so that it runs automatically at boot time.
+1. Report any issues to me - fpg13@georgetown.edu
+
 ## Open Actions/Areas of Investigation & Improvement:
 
-1. This repo has migrated to the ESP32 MCU.   There are minor implementation differences that we'll need to manage (eg. sleep or upgrade method).
+1. This repo has migrated to the ESP32 MCU.   There are minor implementation differences that we'll need to manage through (eg. sleep or upgrade method).
 1. Better understanding of the accuracy and target purpose of the PMS-A003 and Bosch BME680 Sensors. [Super interesting paper](https://uwspace.uwaterloo.ca/bitstream/handle/10012/12776/Tan_Ben.pdf?sequence=5) on the Plantower sensors. We're on the right track with our sensors - check [this](https://seetheair.wordpress.com/2019/01/15/review-purpleair-ii/) out.
 1. Integration with other IoT sites - ThingSpeak, Wunderground.  As a class, we also need to come to some resolution as to how we want to integrate the collection of data from multiple sites.  Does each site have its own IOT service?   Do we have a single IOT account and assign each sensor to be its own channel (thingspeak) or group (adafruit.io)?   The latter would require that we share a single API key with all interested parties.  Might not be a bad thing to do since we're collecting non-sensitive, non-critical data over the past 60 days. 
 1. More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.

@@ -36,19 +36,28 @@ The available I2C devices are set to the following addresses:
 
 This installation process has been tested on Linux and Mac OSX systems.  To install this AQ monitoring software you will need to:
 
-1. Confirm that Python 3 has been installed on your computer.
-1. Install esptool.py and ampy.py tools on your system. Follow links below to get these packages installed.  Understand how to invoke them from the command line.  
-1. Download/Clone this Git repository to your computer.
-1. Choose a text editor that you will need to use to edit these files - Sublime Text is an excellent choice.
-1. Unzip it thereby creating a directory called "air-quality-master".
-1. Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
-1. Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
-1. Edit the wake.py file to selectively measure from different sensors.  The stub.py can be used when no sensors are available but you want to test the ESP and its connectivity to the IOT service.
-1. Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
-1. Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
-1. Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
-     import hwtest
-1. Rename the main\~.py file to main.py so that it runs automatically at boot time.
+1. Before you begin - Have you:
+	1. Confirmed access to Wifi and have obtained the Wifi SSID and password?
+	1. Located your Adafruit IO Key and Username?
+	1. Identified how you will power the unit with a USB cable?
+	1. Located a site suitable for hosting this monitor?
+	1. Chosen a text editor suitable for modifying Python files - Sublime Text and Nano are great choices.
+
+1. Now that this has been completed:
+
+	1. Confirm that Python 3 has been installed on your computer.
+	1. Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
+	1. Download/Clone this Git repository to a directory of your choice on your computer.
+	1. Unzip this archive which will create a directory called "air-quality-master".
+	1. Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
+	1. Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
+	1. Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
+	1. Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
+	1. Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
+	1. Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+	     import hwtest
+	1. Rename the main\~.py file to main.py so that it runs automatically at boot time.
+
 1. Report any issues to me - fpg13@georgetown.edu
 
 ## Open Actions/Areas of Investigation & Improvement:
@@ -84,7 +93,7 @@ This installation process has been tested on Linux and Mac OSX systems.  To inst
 	1. Confirming that connectivity to Adafruit IO is working properly (to be run on a laptop running Python) (testiot.py)
 	1. Automatically creating an Adafruit IO group unique to each monitor (groupmonitor.py) 
 	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (esp32-[version].bin
-	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL interface before main.py automatically runs the AQ code on boot up.
+	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main\~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL interface before main.py automatically runs the AQ code on boot up.
 
 * This code base leverages several other important MicroPython repositories including but not limited to:
 	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266) - 

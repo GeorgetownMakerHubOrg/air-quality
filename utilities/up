@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ../
+for file in *.py; do echo $file; echo ampy $file ;done

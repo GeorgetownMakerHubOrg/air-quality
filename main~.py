@@ -43,7 +43,8 @@ else:  # an opportunity to enter WebREPL after hard reset
 	# ESP8266 Code
 	"""pin0 = Pin(0, Pin.IN, Pin.PULL_UP)   	# set GPIO0 as input with pullup
 	pin0.irq(trigger=Pin.IRQ_RISING, handler=callback)"""
-	
+	#ESP32 Code
+	""" """
 	timer.init(period=5000, mode=Timer.ONE_SHOT, callback=run)
 	
 	# ESP32 Code

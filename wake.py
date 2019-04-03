@@ -18,12 +18,14 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	import sleep, iot, stub, tphg, pd25                  # our stuff - comment this line for stub.py
+	import sleep, iot, stub, tphg, pm25                  # our stuff - comment this line for stub.py
 
 	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
 
 	aq = {} 
-	
+	id = machine.unique_id()
+	chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3]) # make each sensor its own group
+
 	#aq.update(analog.measure())
 	#aq.update(dht11.measure())
 	#aq.update(enviro.measure())
@@ -39,7 +41,7 @@ def main():
 	iot.init_sta(True)
 	# Now let's post all
 	
-	iot.io_post(aq)
+	iot.io_post(chipId,aq)
 	#iot.io_post({"runtime": ((utime.ticks_ms() - start_time)/1000)})
 	print("Runtime is:", (utime.ticks_ms() - start_time)/1000)
 	sleep.init(sleep_interval)                # see you later!

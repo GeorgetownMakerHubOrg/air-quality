@@ -18,7 +18,6 @@ sleep_interval = config.SLEEP
 # HTTP & Adafruit.io stuff
 aio_key = config.X_AIO_KEY
 user = config.USER
-group = config.GROUP
 lat = config.LATITUDE
 lon = config.LONGITUDE
 
@@ -52,7 +51,7 @@ def init_ap(status):
 	else:
 		ap.active(False)
 
-def io_post(aq):							# Adafruit.io POSTing
+def io_post(group, aq):							# Adafruit.io POSTing
 	import json, urequests
 	headers = {'X-AIO-Key': aio_key,'Content-Type': 'application/json'}
 	url='https://io.adafruit.com/api/v2/'+user+'/groups/'+group+'/data'

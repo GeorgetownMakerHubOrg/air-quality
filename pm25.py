@@ -13,12 +13,12 @@ import pmsa003
 
 uart1=UART(1,rx=0,tx=2,baudrate=9600)
 uart2=UART(2,rx=27,tx=26,baudrate=9600)
-pd1 = pmsa003.PMSA003(uart1)
-pd2 = pmsa003.PMSA003(uart2)
+pm1 = pmsa003.PMSA003(uart1)
+pm2 = pmsa003.PMSA003(uart2)
 
 def measure():
-	data1 = pd1.read_compensated_data()
-	data2 = pd2.read_compensated_data()
+	data1 = pm1.read_compensated_data()
+	data2 = pm2.read_compensated_data()
 	print("Compensated Data 1:", data1)
 	print("Compensated Data 2:", data2)
 	# Here we should make decisions as to how to combine both sensor data or report both?

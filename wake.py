@@ -35,7 +35,7 @@ def main():
 	aq.update(tphg.measure())
 	#aq.update(stub.measure())	# when you only want the MCU and no sensors.
 	# for reasons I can't explain, UART takes time to setup - so do this last? WTF.
-	aq.update(pd25.measure())
+	aq.update(pm25.measure())
 
 	iot.init_ap(False)
 	iot.init_sta(True)

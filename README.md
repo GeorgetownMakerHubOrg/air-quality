@@ -21,8 +21,8 @@ The prototype has the following components:
 1. [LOLIN D32 ESP32 Board ](https://wiki.wemos.cc/products:d32:d32)
 1. [Stevenson enclosure from Acurite](https://tinyurl.com/y52xd67g)
 1. I2C-based Sensors:
-	1. [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
-	1. [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
+	- BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
+	- [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
 1. Two (2) Plantower [PMS-A003 Particle Sensors](https://datasheet.lcsc.com/szlcsc/Beijing-Plantower-PMSA003-A_C132744.pdf)
 1. Optional [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
 1. [Optional 3000mAh 18650 Lithium Ion Battery](https://www.ebay.com/itm/202512035904)
@@ -37,26 +37,26 @@ The available I2C devices are set to the following addresses:
 This installation process has been tested on Linux and Mac OSX systems.  To install this AQ monitoring software you will need to:
 
 1. Before you begin - Have you:
-	1. Confirmed access to Wifi and have obtained the Wifi SSID and password?
-	1. Located your Adafruit IO Key and Username?
-	1. Identified how you will power the unit with a USB cable?
-	1. Located a site suitable for hosting this monitor?
-	1. Chosen a text editor suitable for modifying Python files - Sublime Text and Nano are great choices.
+	- Confirmed access to Wifi and have obtained the Wifi SSID and password?
+	- Located your Adafruit IO Key and Username?
+	- Identified how you will power the unit with a USB cable?
+	- Located a site suitable for hosting this monitor?
+	- Chosen a text editor suitable for modifying Python files - Sublime Text and Nano are great choices.
 
-1. Now that this has been completed:
+1. With these out of the way:
 
-	1. Confirm that Python 3 has been installed on your computer.
-	1. Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
-	1. Download/Clone this Git repository to a directory of your choice on your computer.
-	1. Unzip this archive which will create a directory called "air-quality-master".
-	1. Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
-	1. Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
-	1. Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
-	1. Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
-	1. Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
-	1. Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+	- Confirm that Python 3 has been installed on your computer.
+	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
+	- Download/Clone this Git repository to a directory of your choice on your computer.
+	- Unzip this archive which will create a directory called "air-quality-master".
+	- Fetch the required Python modules listed below from their Git repositories and unzip them in the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules.
+	- Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
+	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
+	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
+	- Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
+	- Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
 	     import hwtest
-	1. Rename the main\~.py file to main.py so that it runs automatically at boot time.
+	- Rename the main\~.py file to main.py so that it runs automatically at boot time.
 
 1. Report any issues to me - fpg13@georgetown.edu
 
@@ -74,9 +74,9 @@ This installation process has been tested on Linux and Mac OSX systems.  To inst
 1. Set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
 1. Implement ntp so that we can sample at given times (and not just intervals)
 1. Power/Battery improvements:
-	1. We still need to either combine the results of redundant sensors or report both
-	1. The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
-	1. On a battery monitor when the lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
+	- We still need to either combine the results of redundant sensors or report both
+	- The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
+	- On a battery monitor when the lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
 
 ## Notes
 

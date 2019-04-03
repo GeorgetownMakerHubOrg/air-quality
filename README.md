@@ -45,6 +45,8 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 	- Downloaded CoolTerm for the Mac or Putty for the PC and configure it to support the ESP32.
 		- CoolTerm Configuration: Options->Terminal-"115200", Check "Filter ASCII Escape Sequences" and "Handle BS and DEL Characters" boxes.
 	- Chosen a text editor that you're comfortable using to modify Python files.  Sublime Text is a great choice.
+	- MicroPython is a rich, vibrant development environment.  You should definitely bookmark the following documentation which goes into far more detail than I can cover here:  
+	http://docs.micropython.org/en/latest/esp32/quickref.html
 
 1. With these basics out of the way:
 
@@ -56,7 +58,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
 	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
 	- Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
-	- On a Macintosh use CoolTerm to access the ESP32.   the tool "screen" or Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+	- Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
 	     import hwtest
 	- Rename the main\~.py file to main.py so that it runs automatically at boot time.
 

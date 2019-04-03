@@ -1,8 +1,12 @@
 import utime
-from machine import I2C, Pin, UART
-import neopixel
+from machine import I2C, Pin, UART, unique_id
+import neopixel, machine
 
-i2c = I2C(scl=Pin(22), sda=Pin(21))
+
+id = unique_id()
+chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3])
+print('chipId shows: ', chipId)
+i2c = machine.I2C(scl=Pin(22), sda=Pin(21))
 print('i2c bus shows: ', i2c.scan())
 uart1=UART(1,rx=27,tx=26,baudrate=9600)
 uart2=UART(2,rx=0,tx=2,baudrate=9600)

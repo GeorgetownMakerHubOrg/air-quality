@@ -30,3 +30,5 @@ do
 	echo $file
 	ampy -d 0.5 --port $port put $file $file
 done
+id=`ampy --port /dev/tty.usbserial-14130 run hwtest.py |grep chip|awk '{print $3}'`
+echo "Machine ID is" $id

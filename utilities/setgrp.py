@@ -1,25 +1,20 @@
 # Author: Pascal Girard
 #
 # Tool to set adafruit.io group for this ESP MCU
+#import machine
 import config as constants
 
 # HTTP & Adafruit.io stuff
 aio_key = constants.X_AIO_KEY
 user = constants.USER
-group = {"deadbeef"}
 
-def io_post(group, aq):
+def io_post(group):
 	import json, requests
 	headers = {'X-AIO-Key': aio_key,'Content-Type': 'application/json'}
-	url='https://io.adafruit.com/api/v2/'+user+'/groups/'
+	url='https://io.adafruit.com/api/v2/'+user+'/groups'
 	# url='https://io.adafruit.com/api/v2/'+user+'/feeds/'+group+'.'+feed+'/data.json'
 	print('URL is:', url)
-	mylist = []
-	for key, value in aq.items():
-		print('K/V:', key, value)
-		mylist.append({"key": key, "value": value})
-	print("Mylist", mylist)
-	mystr = {"name":"deadbeef", "description":"Pascal collection of feeds"}
+	mystr = {"name":group, "description":"A collection of feeds", "visibility":"public"}
 	#mystr = { "location": {"lat": lat, "lon": lon}, "feeds": mylist}
 	print("Mystr:", mystr)
 	data = json.dumps(mystr)
@@ -33,7 +28,6 @@ def io_post(group, aq):
 	else:
 		response.close()
 
-def main():
-	mylist = {"temperature": 100, "humidity": 20, "pressure": 1000}
-	print(mylist)
-	io_post(group, mylist)
+#id = machine.unique_id()
+#chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3]) # make each sensor its own group
+io_post('3c71bf0a')

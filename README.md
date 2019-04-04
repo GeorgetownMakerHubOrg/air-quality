@@ -102,7 +102,7 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 
 	1. Basic hardware testing to ensure that sensors are properly connected and minimally operating (hwtest.py)
 	1. Confirming that connectivity to Adafruit IO is working properly (to be run on a laptop running Python) (testiot.py)
-	1. Automatically creating an Adafruit IO group unique to each monitor (groupmonitor.py) 
+	1. Automatically creating an Adafruit IO group unique to each monitor (setgroup.py) 
 	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (esp32-[version].bin
 	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main\~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL interface before main.py automatically runs the AQ code on boot up.
 

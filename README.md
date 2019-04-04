@@ -76,6 +76,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 ## Possible Improvements:
 
 Why I would argue that Adafruit.IO is better than ThingSpeak:
+
 	1. Great documentation
 	1. Solid REST & MQTT support
 	1. You can download all data from the push of one button

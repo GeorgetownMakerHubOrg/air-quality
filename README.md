@@ -75,7 +75,15 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 
 ## Possible Improvements:
 
-1. Set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
+Why I would argue that Adafruit.IO is better than ThingSpeak:
+
+	1. Great documentation
+	1. Solid REST & MQTT support
+	1. You can download all data from the push of one button
+	1. Fields can be set up as Key/Value pairs e.g "Temperature", 32
+	1. You can create fields on the fly
+	1. You can create groups (monitors) on the fly
+	1. You can set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
 1. Implement ntp so that we can sample at given times (and not just intervals)
 1. Power/Battery improvements:
 	- We still need to either combine the results of redundant sensors or report both
@@ -95,7 +103,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 
 	1. Basic hardware testing to ensure that sensors are properly connected and minimally operating (hwtest.py)
 	1. Confirming that connectivity to Adafruit IO is working properly (to be run on a laptop running Python) (testiot.py)
-	1. Automatically creating an Adafruit IO group unique to each monitor (groupmonitor.py) 
+	1. Automatically creating an Adafruit IO group unique to each monitor (setgroup.py) 
 	1. Installing Micropython binary v. 1.10 for the ESP32 using esptool.py (esp32-[version].bin
 	1. Building an ESP with all the necessary AQ module and installing micropython from scratch (upload). Be sure to rename the file main\~.py to main.py - this is done so that you can access the ESP32 and do minor testing via the REPL interface before main.py automatically runs the AQ code on boot up.
 
@@ -113,3 +121,7 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 * [OpenAQ](https://openaq.org/) - fighting air inequality through open data, open-source tools, and a global, grassroots community.   Georgetown connections?   [Krista Hasenkopf](https://advanced.jhu.edu/about-us/faculty/christa-hasenkopf/) is a leader at OpenAQ as is [Joe Flasher](https://github.com/jflasher). Their funding primarily comes from [here](https://openaq.org/#/about?_k=28cy2c).
 
 * [Nature publishes a good article on air quality monitoring in East Africa](https://www.nature.com/articles/d41586-018-04330-x) - it also raises GeoHealth's work in [Kenya and Tanzania](https://geohealthhub.org/2016/06/30/usc-training-launches-a-new-era-of-air-pollution-health-research-in-eastern-africa/) which is run out of [NIH](https://www.fic.nih.gov/Programs/Pages/environmental-occupational.aspx).
+
+## Code Still To Do
+
+* Port ESP8266 upgrade code in main~.py to ESP32

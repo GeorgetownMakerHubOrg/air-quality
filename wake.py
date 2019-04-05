@@ -13,6 +13,21 @@ import config
 
 sleep_interval = config.SLEEP
 
+def sleep(milliseconds):
+	"""
+	# If this is deployed on ESP8266, uncomment this block
+	# to enable real time clock & interrupts for the ESP8266
+	# configure RTC.ALARM0 to be able to wake the device
+	rtc = machine.RTC()
+	rtc.irq(trigger=rtc.ALARM0, wake=machine.DEEPSLEEP)
+
+	# set RTC.ALARM0 to fire after X seconds (waking the device)
+	rtc.alarm(rtc.ALARM0, milliseconds)
+	"""
+	# put the device to sleep
+	# we'll also need to power off the sensors at some point too.
+	machine.deepsleep(milliseconds)
+
 def main():
 	import machine, utime, array                         # ESP stuff
 	from machine import Pin, Signal
@@ -44,5 +59,5 @@ def main():
 	iot.io_post(chipId,aq)
 	#iot.io_post({"runtime": ((utime.ticks_ms() - start_time)/1000)})
 	print("Runtime is:", (utime.ticks_ms() - start_time)/1000)
-	sleep.init(sleep_interval)                # see you later!
+	sleep(sleep_interval)                # see you later!
 	

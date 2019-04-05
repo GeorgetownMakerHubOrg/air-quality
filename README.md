@@ -124,8 +124,4 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 
 ## Code Still To Do
 
-* Port ESP8266 upgrade code to ESP32
-* Enable setgrp.py to set an Adafruit.IO group to a monitor's chipId passed as an argument
-* Figure out if we average values between identical sensors or report both - code it
-
-
+* Port ESP8266 upgrade code in main~.py to ESP32

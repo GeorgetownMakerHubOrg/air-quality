@@ -45,8 +45,8 @@ This installation process has been tested on Linux and Mac OSX systems.  Follow 
 	- Downloaded CoolTerm for the Mac or Putty for the PC and configure it to support the ESP32.
 		- CoolTerm Configuration: Options->Terminal-"115200", Check "Filter ASCII Escape Sequences" and "Handle BS and DEL Characters" boxes.
 	- Chosen a text editor that you're comfortable using to modify Python files.  Sublime Text is a great choice.
-	- MicroPython is a rich, vibrant development environment.  You should definitely bookmark the following documentation which goes into far more detail than I can cover here:  
-	http://docs.micropython.org/en/latest/esp32/quickref.html
+	- Bookmarked http://docs.micropython.org/en/latest/esp32/quickref.html. MicroPython is a rich, vibrant development environment.  You should definitely bookmark the following documentation which goes into far more detail than I can cover here.
+	
 
 1. With these basics out of the way:
 

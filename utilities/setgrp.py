@@ -3,6 +3,7 @@
 # Tool to set adafruit.io group for this ESP MCU
 #import machine
 import config as constants
+from sys import argv
 
 # HTTP & Adafruit.io stuff
 aio_key = constants.X_AIO_KEY
@@ -14,7 +15,7 @@ def io_post(group):
 	url='https://io.adafruit.com/api/v2/'+user+'/groups'
 	# url='https://io.adafruit.com/api/v2/'+user+'/feeds/'+group+'.'+feed+'/data.json'
 	print('URL is:', url)
-	mystr = {"name":group, "description":"A collection of feeds", "visibility":"public"}
+	mystr = {"name":group, "description":"Air Quality Monitor - STIA436"}
 	#mystr = { "location": {"lat": lat, "lon": lon}, "feeds": mylist}
 	print("Mystr:", mystr)
 	data = json.dumps(mystr)
@@ -28,6 +29,6 @@ def io_post(group):
 	else:
 		response.close()
 
-#id = machine.unique_id()
-#chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3]) # make each sensor its own group
-io_post('3c71bf0a')
+for monitor in argv:
+	#io_post(monitor)
+	print(monitor)

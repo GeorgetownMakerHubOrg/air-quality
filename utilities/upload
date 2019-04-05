@@ -32,3 +32,4 @@ do
 done
 id=`ampy --port /dev/tty.usbserial-14130 run utilities/hwtest.py |grep chip|awk '{print $3}'`
 echo "Machine ID is" $id
+python3 utilities/setgrp.py $id

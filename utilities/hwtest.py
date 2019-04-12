@@ -4,7 +4,7 @@ import neopixel, machine
 
 
 id = unique_id()
-chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3])
+chipId='{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3], id[4], id[5])
 print('chipId shows: ', chipId)
 i2c = machine.I2C(scl=Pin(22), sda=Pin(21))
 print('i2c bus shows: ', i2c.scan())

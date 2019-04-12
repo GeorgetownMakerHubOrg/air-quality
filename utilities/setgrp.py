@@ -29,6 +29,6 @@ def io_post(group):
 	else:
 		response.close()
 
-for monitor in argv:
-	#io_post(monitor)
+for monitor in argv[1]:
+	io_post(monitor)
 	print(monitor)

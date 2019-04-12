@@ -9,7 +9,7 @@
 # Don't forget to enable A0 battery as well as sleep (16 & Reset) - solder!
 # 
 # 
-import config
+from utilities import config
 
 sleep_interval = config.SLEEP
 

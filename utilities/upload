@@ -3,8 +3,8 @@
 #port=/dev/tty.usbserial-1410
 #port=/dev/tty.SLAB_USBtoUART
 #port="/dev/tty.wchusbserialfd130"
-#port="/dev/tty.usbserial-1430"
-port="/dev/tty.usbserial-14130"
+port="/dev/tty.usbserial-1430"
+#port="/dev/tty.usbserial-14130"
 # for Lolin D32 ESP32 
 
 esptool.py --port $port erase_flash
@@ -30,6 +30,6 @@ do
 	echo $file
 	ampy -d 0.5 --port $port put $file $file
 done
-id=`ampy --port /dev/tty.usbserial-14130 run utilities/hwtest.py |grep chip|awk '{print $3}'`
+id=`ampy --port $port run utilities/hwtest.py |grep chip|awk '{print $3}'`
 echo "Machine ID is" $id
 python3 utilities/setgrp.py $id

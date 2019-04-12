@@ -4,9 +4,8 @@
 # F. Pascal Girard
 #
 import network, utime   # Micropython modules
-import sleep, config    # Our modules
-
-# import config constants
+import sleep            # Our modules
+from utilities import config    
 
 # Wifi stuff
 sta_ssid = config.STA_SSID

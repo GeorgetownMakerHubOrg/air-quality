@@ -112,6 +112,8 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 	* [Pimoroni BME680 Repo](https://github.com/pimoroni/bme680-python) - extensive driver
 	* [SMBus Abstration Repo](https://github.com/gkluoe/micropython-smbus) - use this i2c SMBus layer instead of the i2c.py provided with the Pimoroni BME680 repo
 
+* Setting up static routes on your router for the monitor will greatly reduce the network connection latency (from 4-6 seconds to 2).
+
 ## AQ sites worth tracking
 
 * [CityOS](https://cityos-air.readme.io/) - Sarajevo-based initiative that uses the ESP, DHT-11, and PMS-003 sensors - not weather proof - Neopixels for live AQ visualization. 

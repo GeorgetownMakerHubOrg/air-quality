@@ -29,6 +29,5 @@ def io_post(group):
 	else:
 		response.close()
 
-for monitor in argv[1]:
-	io_post(monitor)
-	print(monitor)
+print("Setting Group in Adafruit.IO")
+io_post(argv[1])

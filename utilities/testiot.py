@@ -7,7 +7,7 @@ aio_key = constants.X_AIO_KEY
 user = constants.USER
 lat = constants.LATITUDE
 lon = constants.LONGITUDE
-group = 'beefdead'
+group = 'stia436'
 
 def io_post(group, aq):
 	import json, requests

@@ -3,8 +3,8 @@
 # Professor Colin McCormick & Father Chris Wagner
 # F. Pascal Girard
 #
-import network, utime   # Micropython modules
-import sleep            # Our modules
+import network, utime             # Micropython modules
+import sleep                      # Our modules
 from utilities import config    
 
 # Wifi stuff
@@ -35,7 +35,7 @@ def init_sta(status):
 				print("Waiting for IP... Count:", count)
 				if count == 10:
 					print ("Can't find wifi - resetting")
-					sleep.init(sleep_interval)            # pass an argument to delay awakening?
+					sleep(sleep_interval)            # pass an argument to delay awakening?
 				utime.sleep(1)
 				count +=1 
 		print('Network Configuration:', wlan.ifconfig())
@@ -51,16 +51,15 @@ def init_ap(status):
 		ap.active(False)
 
 def io_post(group, aq):							# Adafruit.io POSTing
-	import json, urequests
+	import json, urequests, sleep
 	headers = {'X-AIO-Key': aio_key,'Content-Type': 'application/json'}
 	url='https://io.adafruit.com/api/v2/'+user+'/groups/'+group+'/data'
-	# print('URL is:', url)
+	print('URL is:', url)
 	aqlist = []
 	for key, value in aq.items():
 		aqlist.append({"key": key, "value": value})
-	print("Mylist", aqlist)
+	#print("Mylist", aqlist)
 	api_list = { "location": {"lat": lat, "lon": lon}, "feeds": aqlist}
-	print("API List:", api_list)
 	data = json.dumps(api_list)
 	# POST response
 	try:

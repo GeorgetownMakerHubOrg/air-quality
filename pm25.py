@@ -11,8 +11,8 @@ from machine import Pin, UART
 from utime import sleep
 import pmsa003
 
-uart1=UART(1,rx=0,tx=2,baudrate=9600)
-uart2=UART(2,rx=27,tx=26,baudrate=9600)
+uart1=UART(1,rx=2,tx=0,baudrate=9600)
+uart2=UART(2,rx=26,tx=27,baudrate=9600)
 pm1 = pmsa003.PMSA003(uart1)
 pm2 = pmsa003.PMSA003(uart2)
 

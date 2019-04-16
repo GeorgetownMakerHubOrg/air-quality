@@ -111,6 +111,7 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 	* [BME280 Repo](https://github.com/catdog2/mpy_bme280_esp8266) - 
 	* [Pimoroni BME680 Repo](https://github.com/pimoroni/bme680-python) - extensive driver
 	* [SMBus Abstration Repo](https://github.com/gkluoe/micropython-smbus) - use this i2c SMBus layer instead of the i2c.py provided with the Pimoroni BME680 repo
+	* [Analog to Digital ADS115 Repo](https://github.com/adafruit/micropython-adafruit-ads1015) - this will be needed if we decide to use a NO2 or O2 sensor.
 
 * Setting up a static dhcp address for the monitor on the router will greatly reduce the network connection latency (from 4-6 seconds to 2) while increasing consistency on runtimes.
 

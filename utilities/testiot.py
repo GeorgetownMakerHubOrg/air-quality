@@ -2,6 +2,7 @@
 #
 import config as constants
 
+
 # HTTP & Adafruit.io stuff
 aio_key = constants.X_AIO_KEY
 user = constants.USER
@@ -10,7 +11,11 @@ lon = constants.LONGITUDE
 group = 'stia436'
 
 def io_post(group, aq):
-	import json, requests
+	try:
+		import requests
+	except ImportError:
+		import urequests as requests
+	import json
 	headers = {'X-AIO-Key': aio_key,'Content-Type': 'application/json'}
 	url='https://io.adafruit.com/api/v2/'+user+'/groups/'+group+'/data'
 	# url='https://io.adafruit.com/api/v2/'+user+'/feeds/'+group+'.'+feed+'/data.json'

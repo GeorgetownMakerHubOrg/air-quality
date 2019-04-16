@@ -1,6 +1,6 @@
 
-def sleep(milliseconds):
-	def init():
+def init(milliseconds):
+	import machine
 	"""
 	# If this is deployed on ESP8266, uncomment this block
 	# to enable real time clock & interrupts for the ESP8266

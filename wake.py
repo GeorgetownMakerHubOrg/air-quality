@@ -20,13 +20,14 @@ def main():
 	from machine import Pin, Signal
 	from sys import exit
 
-	import iot, stub, tphg, pm25                  # our stuff - comment this line for stub.py
-
-	start_time = utime.ticks_ms()        	             # let's track runtime (for measuring current usage)
+	# import tphg, pm25             			# our sensors - comment this line for stub.py
+	import stub									# when no sensors are attached.
+	import iot		          					# IOT networking
+	start_time = utime.ticks_ms()				# let's track runtime (for measuring current usage)
 
 	aq = {} 
 	id = machine.unique_id()
-	chipId='{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3]) # make each sensor its own group
+	chipId='{:02x}{:02x}{:02x}{:02x}{:02x}{:02x}'.format(id[0], id[1], id[2], id[3], id[4], id[5]) # make each sensor its own group
 
 	#aq.update(analog.measure())
 	#aq.update(dht11.measure())

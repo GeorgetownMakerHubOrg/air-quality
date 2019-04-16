@@ -35,7 +35,7 @@ def init_sta(status):
 				print("Waiting for IP... Count:", count)
 				if count == 10:
 					print ("Can't find wifi - resetting")
-					sleep(sleep_interval)            # pass an argument to delay awakening?
+					sleep.init(sleep_interval)            # pass an argument to delay awakening?
 				utime.sleep(1)
 				count +=1 
 		print('Network Configuration:', wlan.ifconfig())

@@ -3,7 +3,7 @@
 #port=/dev/tty.usbserial-1410
 #port=/dev/tty.SLAB_USBtoUART
 #port="/dev/tty.wchusbserialfd130"
-port="/dev/tty.usbserial-1430"
+port="/dev/tty.usbserial-1410"
 #port="/dev/tty.usbserial-14130"
 # for Lolin D32 ESP32 
 

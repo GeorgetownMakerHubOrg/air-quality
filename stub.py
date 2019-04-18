@@ -14,10 +14,17 @@ def measure():
         "temperature": 32,
         "humidity": 80,
         "pressure": 100000,
-        # PMS-A003 - Concentration Units (standard)
-        "pm25-std": 25,
-        # PMS-A003 - Concentration Units (environmental)
-        "pm25-env": 25,  
-        # PMS-A003 - Particle Count 
-        "part-25um": 25
+        "voc": 256000,
+        "pm10-standard": 10,
+        "pm25-standard": 25,
+        "pm100-standard": 100,
+        "pm10-env": 10,
+        "pm25-env": 25,
+        "pm100-env": 100,
+        "particles-03um": 3,
+        "particles-05um": 5,
+        "particles-10um": 10,
+        "particles-25um": 25,
+        "particles-50um": 50,
+        "particles-100um": 100
         }

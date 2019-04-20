@@ -1,7 +1,7 @@
-# The MIT License (MIT) - https://opensource.org/licenses/MIT
+# GNU General Public License <https://www.gnu.org/licenses>
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
-# F. Pascal Girard
+# Copyright (c) 2019 F. Pascal Girard
 #
 # credit for the pack/unpack code & variable names goes to ladyada at Adafruit:
 # https://learn.adafruit.com/pm25-air-quality-sensor/circuitpython-code

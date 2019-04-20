@@ -1,7 +1,3 @@
-# Author: Pascal Girard
-#
-# Tool to set adafruit.io group for this ESP MCU
-#import machine
 import config as constants
 from sys import argv
 

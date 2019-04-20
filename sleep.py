@@ -1,3 +1,7 @@
+# GNU General Public License <https://www.gnu.org/licenses>
+# STIA436 Course - Spring 2019
+# Professor Colin McCormick & Father Chris Wagner
+# Copyright (c) 2019 F. Pascal Girard
 
 def init(milliseconds):
 	import machine

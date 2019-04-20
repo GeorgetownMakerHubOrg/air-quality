@@ -1,7 +1,7 @@
-# The MIT License (MIT) - https://opensource.org/licenses/MIT
+# GNU General Public License <https://www.gnu.org/licenses>
 # STIA436 Course - Spring 2019
 # Professor Colin McCormick & Father Chris Wagner
-# F. Pascal Girard
+# Copyright (c) 2019 F. Pascal Girard
 #
 # With the exception of implementing a ring buffer to eliminate memory over-allocation, 
 # full credit for this code goes to: https://github.com/pimoroni/bme680-python (see examples/read-all.py)

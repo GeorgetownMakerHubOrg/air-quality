@@ -1,5 +1,3 @@
-# Author: Pascal Girard
-#
 import config as constants
 
 

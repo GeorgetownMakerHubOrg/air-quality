@@ -1,7 +1,8 @@
-# The MIT License (MIT)
-# Copyright (c) F. Pascal Girard
-# https://opensource.org/licenses/MIT
+# GNU General Public License <https://www.gnu.org/licenses>
 # STIA436 Course - Spring 2019
+# Professor Colin McCormick & Father Chris Wagner
+# Copyright (c) 2019 F. Pascal Girard
+
 # Professor Colin McCormick & Father Chris Wagner
 # 
 # A stub sensor so we can test the core code without sensors

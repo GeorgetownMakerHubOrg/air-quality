@@ -32,7 +32,6 @@ def main():
 	#aq.update(analog.measure())
 	#aq.update(dht11.measure())
 	#aq.update(enviro.measure())
-	#aq.update(pm25.measure())
 	#aq.update(ppd42.measure())
 	#aq.update(tph.measure())
 	#aq.update(tphg.measure())

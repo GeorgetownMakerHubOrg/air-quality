@@ -11,8 +11,9 @@ from machine import Pin, UART
 from utime import sleep
 import pmsa003
 
-uart1=UART(1,rx=2,tx=0,baudrate=9600)
-uart2=UART(2,rx=26,tx=27,baudrate=9600)
+uart1=UART(2,rx=0,tx=2,baudrate=9600)
+uart2=UART(1,rx=26,tx=27,baudrate=9600)
+
 pm1 = pmsa003.PMSA003(uart1)
 pm2 = pmsa003.PMSA003(uart2)
 
@@ -21,7 +22,7 @@ def measure():
 	data2 = pm2.read_compensated_data()
 	print("Compensated Data 1:", data1)
 	print("Compensated Data 2:", data2)
-	# Here we should make decisions as to how to combine both sensor data or report both?
+	# Here we should make decisio ns as to how to combine both sensor data or report both?
 	return {  # until i can get more than 10 feeds; can only use 6 for now; 3 from each temporarily
         "pm10-standard":   data1[0],
         "pm25-standard":   data2[1],

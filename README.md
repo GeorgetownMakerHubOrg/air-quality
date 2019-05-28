@@ -1,3 +1,4 @@
+(https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/Layla-905.jpg)
 # STIA 436 - Air Quality Innovation
 
 ## Improvements on the [STIA315](https://github.com/colinmccormick/Georgetown_STIA315_AQ_monitor) course.   

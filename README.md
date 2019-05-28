@@ -23,7 +23,7 @@ The prototype has the following components:
 1. [LOLIN D32 ESP32 Board ](https://wiki.wemos.cc/products:d32:d32)
 1. [Stevenson enclosure from Acurite](https://tinyurl.com/y52xd67g)
 1. I2C-based Sensors:
-	- BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
+	- [BME280 sensor (Temperature, Pressure, Humidity)](https://tinyurl.com/yafl3h9x)
 	- [BME680 sensor (Temperature, Pressure, Humidity, and Carbon-based Gas Particles)](https://www.bosch-sensortec.com/bst/products/all_products/bme680)
 1. Two (2) Plantower [PMS-A003 Particle Sensors](https://datasheet.lcsc.com/szlcsc/Beijing-Plantower-PMSA003-A_C132744.pdf)
 1. Optional [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
@@ -36,7 +36,7 @@ The available I2C devices are set to the following addresses:
 
 ## Installation
 
-This installation process has been tested on Linux and Mac OSX systems.  Follow me:
+This instructions are provided for Georgetown students who wish to build GUAQ from scratch in the Maker Hub.   These installation steps are a work in progress but have been tested on Linux and Mac OSX systems:
 
 1. Before you install MicroPython - Have you:
 	- Confirmed access to Wifi and have obtained the Wifi SSID and password?

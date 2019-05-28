@@ -18,10 +18,9 @@ sleep_interval = config.SLEEP
 def main():
 	import utime, array                         # ESP stuff
 	from machine import Pin, Signal
-	from sys import exit
 
-	# import tphg, pm25             			# our sensors - comment this line for stub.py
-	import stub									# when no sensors are attached.
+	import tphg, pm25             			    # Version 905 sensors - comment this line for stub.py
+	#import stub								 # when no sensors are attached.
 	import iot		          					# IOT networking
 	start_time = utime.ticks_ms()				# let's track runtime (for measuring current usage)
 
@@ -34,10 +33,10 @@ def main():
 	#aq.update(enviro.measure())
 	#aq.update(ppd42.measure())
 	#aq.update(tph.measure())
-	#aq.update(tphg.measure())
-	aq.update(stub.measure())	# when you only want the MCU and no sensors.
+	aq.update(tphg.measure())
+	#aq.update(stub.measure())	# when you only want the MCU and no sensors.
 	# for reasons I can't explain, UART takes time to setup - so do this last? WTF.
-	#aq.update(pm25.measure())
+	aq.update(pm25.measure())
 
 	iot.init_ap(False)
 	iot.init_sta(True)

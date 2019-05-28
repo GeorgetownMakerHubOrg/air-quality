@@ -61,7 +61,7 @@ def measure():
         if sensor.get_sensor_data():
             # output = "{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH".format(sensor.data.temperature, sensor.data.pressure, sensor.data.humidity)
             data = { 
-            "temperature": sensor.data.temperature,           # Fahrenheit  
+            "temperature": sensor.data.temperature,           # Celcius  
             "pressure": sensor.data.pressure,                 # kPa
             "humidity": sensor.data.humidity                  # % 
             }

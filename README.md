@@ -29,12 +29,6 @@ The prototype has the following components:
 1. Optional [USB connected Solar Panel](https://tinyurl.com/yad7xpcu)
 1. [Optional 3000mAh 18650 Lithium Ion Battery](https://www.ebay.com/itm/202512035904)
 
-The available I2C devices are set to the following addresses:
-
-* 118 (0x76) - BME280 Sensor
-* 119 (0x77) - BME680 Sensor
-
-
 ## Open Actions/Areas of Investigation & Improvement:
 
 1. This repo has migrated to the ESP32 MCU.   There are minor implementation differences that we'll need to manage through (eg. sleep or upgrade method).
@@ -43,6 +37,7 @@ The available I2C devices are set to the following addresses:
 1. More and more articles are appearing on this subject of Consumer Grade Air Quality Monitoring such as [this](https://molekule.com/blog/consumer-grade-air-quality-sensors-are-they-good-enough/).  [Volatile Organic Compounds](https://toxtown.nlm.nih.gov/chemicals-and-contaminants/volatile-organic-compounds-vocs) are nasty!  A [decent listing of AQ sensors](https://aqicn.org/sensor/) is, of course, in China.   A [DIY site](https://www.byteyourlife.com/en/household-tools/particulate-matter-sensor-controller-project-luftdaten-info/7204) where you can register your device.
 1. Continue to evaluate power usage using the DC Power Supply in the Hub. Are sensors unnecessarily draining the battery? 
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
+1. More details on this monitor's design and roadmap are described in this [Google document](https://docs.google.com/document/d/1_XBc5c5FSMccZlWRLiqR3a8eLAP81eoLvET66j237zA).
 
 ## Possible Improvements:
 

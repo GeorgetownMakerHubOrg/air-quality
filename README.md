@@ -34,37 +34,6 @@ The available I2C devices are set to the following addresses:
 * 118 (0x76) - BME280 Sensor
 * 119 (0x77) - BME680 Sensor
 
-## Installation
-
-This instructions are provided for Georgetown students who wish to build GUAQ from scratch in the Maker Hub.   These installation steps are a work in progress but have been tested on Linux and Mac OSX systems:
-
-1. Before you install MicroPython - Have you:
-	- Confirmed access to Wifi and have obtained the Wifi SSID and password?
-	- Located your Adafruit IO Key and Username?
-	- Identified how you will power the unit with a USB cable?
-	- Located a site suitable for hosting this monitor?
-	- Checked that Python Version 2 or Version 3 has been installed on your computer.
-	- Downloaded CoolTerm for the Mac or Putty for the PC and configure it to support the ESP32.
-		- CoolTerm Configuration: Options->Terminal-"115200", Check "Filter ASCII Escape Sequences" and "Handle BS and DEL Characters" boxes.
-	- Chosen a text editor that you're comfortable using to modify Python files.  Sublime Text is a great choice.
-	- Bookmarked http://docs.micropython.org/en/latest/esp32/quickref.html. MicroPython is a rich, vibrant development environment.  You should definitely bookmark the following documentation which goes into far more detail than I can cover here.
-	
-
-1. With these basics out of the way:
-
-	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
-	- Download/Clone this Git repository to a directory of your choice on your computer.
-	- Unzip this archive which will create a directory called "air-quality-master".
-	- Fetch the required Python library modules listed below from their Git repositories and put these libraries into the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules (bme680 and usmbus have library sub-directories)
-	- Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
-	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
-	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
-	- Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
-	- Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
-	     import hwtest
-	- Rename the main\~.py file to main.py so that it runs automatically at boot time.
-
-1. Report any issues to me - fpg13@georgetown.edu
 
 ## Open Actions/Areas of Investigation & Improvement:
 
@@ -130,3 +99,34 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 ## Code Still To Do
 
 * Port ESP8266 upgrade code in main~.py to ESP32
+## Installation
+
+These instructions are provided for Georgetown students who wish to build GUAQ from scratch in the Maker Hub.   These installation steps are a work in progress but have been tested on Linux and Mac OSX systems:
+
+1. Before you install MicroPython - Have you:
+	- Confirmed access to Wifi and have obtained the Wifi SSID and password?
+	- Located your Adafruit IO Key and Username?
+	- Identified how you will power the unit with a USB cable?
+	- Located a site suitable for hosting this monitor?
+	- Checked that Python Version 2 or Version 3 has been installed on your computer.
+	- Downloaded CoolTerm for the Mac or Putty for the PC and configure it to support the ESP32.
+		- CoolTerm Configuration: Options->Terminal-"115200", Check "Filter ASCII Escape Sequences" and "Handle BS and DEL Characters" boxes.
+	- Chosen a text editor that you're comfortable using to modify Python files.  Sublime Text is a great choice.
+	- Bookmarked http://docs.micropython.org/en/latest/esp32/quickref.html. MicroPython is a rich, vibrant development environment.  You should definitely bookmark the following documentation which goes into far more detail than I can cover here.
+	
+
+1. With these basics out of the way:
+
+	- Install esptool.py and ampy.py tools on your system by following the instructions in the links below.  Understand how to invoke them from the command line.  
+	- Download/Clone this Git repository to a directory of your choice on your computer.
+	- Unzip this archive which will create a directory called "air-quality-master".
+	- Fetch the required Python library modules listed below from their Git repositories and put these libraries into the current 'air-quality-master' directory.  As a minimum, this must include BME280, BME680, and smbus modules (bme680 and usmbus have library sub-directories)
+	- Configure the config-generic.py with the configuration information specific to your site and rename it config.py - these changes will include Wifi credentials and Adafruit IO username and key. Optionally, you can configure the Access Point SSID and password as well.
+	- Edit the wake.py file to selectively measure from the attached sensors.  The stub.py can be used when no sensors are available but you want to test the ESP32 and its connectivity to the IOT service.
+	- Optionally remove those MicroPython modules that are not required for this monitor - eg. DHT11, analog.py, stub.py, and enviro.py.
+	- Use the <span style="font-family:Courier;">utilities/upload</span> script to install Micropython 1.10 on the ESP32 and upload the air quality files.  You will only need to change a single line in this script to identify the port used by your computer to connect to the ESP.  On a macintosh, it's usually  <span style="font-family:Courier;">/dev/tty.usbserial-xxxx</span>.  
+	- Run <span style="font-family:Courier;">hwtest.py</span> to confirm that the ESP32 can communicate with the sensors:
+	     import hwtest
+	- Rename the main\~.py file to main.py so that it runs automatically at boot time.
+
+1. Report any issues to me - fpg13@georgetown.edu

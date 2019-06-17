@@ -7,10 +7,13 @@
 # What other machine states/conditions do we want to record?
 # Using only this module will also allow us to measure current consumption of the ESP without sensor load
 #
-import machine, micropython
+
+import machine
+
 voltage = machine.ADC(0)
 
+
 def measure():
-	return {
-        "volts": voltage.read()/230.5
+    return {
+        "volts": voltage.read() / 230.5
     }

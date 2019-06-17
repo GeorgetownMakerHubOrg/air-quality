@@ -15,11 +15,11 @@
 from array import array
 from ustruct import unpack
 
-class PMSA003:
 
+class PMSA003:
     def __init__(self, uart):
         if uart is None:
-            raise ValueError('A uart object is required.')
+            raise ValueError("A uart object is required.")
         self.uart = uart
         # temporary data holders
         self._resultarray = array("i", [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
@@ -31,48 +31,52 @@ class PMSA003:
         if data:
             data = list(data)
             self.buffer += data
-            while self.buffer and self.buffer[0] != 0x42:   # get to header
+            while self.buffer and self.buffer[0] != 0x42:  # get to header
                 self.buffer.pop(0)
-                print('stripping buffer pre-data')
-            if len(self.buffer) == 32 and self.buffer[1] == 0x4d:   # we must have a good frame?
+                print("stripping buffer pre-data")
+            if (
+                len(self.buffer) == 32 and self.buffer[1] == 0x4D
+            ):  # we must have a good frame?
                 frame_len = unpack(">H", bytes(self.buffer[2:4]))[0]
                 if frame_len == 28:
                     frame = unpack(">HHHHHHHHHHHHHH", bytes(self.buffer[4:]))
-                    pm10_standard, pm25_standard, pm100_standard, pm10_env, \
-                        pm25_env, pm100_env, particles_03um, particles_05um, particles_10um, \
-                        particles_25um, particles_50um, particles_100um, skip, checksum = frame
+                    pm10_standard, pm25_standard, pm100_standard, pm10_env, pm25_env, pm100_env, particles_03um, particles_05um, particles_10um, particles_25um, particles_50um, particles_100um, skip, checksum = (
+                        frame
+                    )
 
                     check = sum(self.buffer[0:30])
                     if check == checksum:
                         result[0] = pm10_standard
                         result[1] = pm25_standard
-                        result[2]  = pm100_standard
-                        result[3]  = pm10_env
-                        result[4]  = pm25_env
-                        result[5]  = pm100_env
-                        result[6]  = particles_03um
-                        result[7]  = particles_05um
-                        result[8]  = particles_10um
-                        result[9]  = particles_25um
+                        result[2] = pm100_standard
+                        result[3] = pm10_env
+                        result[4] = pm25_env
+                        result[5] = pm100_env
+                        result[6] = particles_03um
+                        result[7] = particles_05um
+                        result[8] = particles_10um
+                        result[9] = particles_25um
                         result[10] = particles_50um
                         result[11] = particles_100um
                         return result
                     else:
                         self.buffer = []
-                        print('bad checksum - ignoring') # need a better way to handle these conditions.
-                        return {'bad_check': 1}
+                        print(
+                            "bad checksum - ignoring"
+                        )  # need a better way to handle these conditions.
+                        return {"bad_check": 1}
                 else:
                     self.buffer = []  # eew, let's start over
-                    print('incorrect frame length - ignoring')
-                    return {'bad_length': 1}
+                    print("incorrect frame length - ignoring")
+                    return {"bad_length": 1}
             else:
                 self.buffer = []  # eew, let's start over
-                print('bad data - ignoring')
-                return {'bad_data': 1}
+                print("bad data - ignoring")
+                return {"bad_data": 1}
         else:
             self.buffer = []  # eew, let's start over
-            print('no data - ignoring')
-            return {'no_data': 1}
+            print("no data - ignoring")
+            return {"no_data": 1}
 
     def read_compensated_data(self, result=None):
         """ At some point we will want to do some local compensation of data.  
@@ -85,9 +89,9 @@ class PMSA003:
 
         """
         self.read_raw_data(self._resultarray)
-        pm10_standard, pm25_standard, pm100_standard, pm10_env, \
-            pm25_env, pm100_env, particles_03um, particles_05um, particles_10um, \
-                particles_25um, particles_50um, particles_100um = self._resultarray
+        pm10_standard, pm25_standard, pm100_standard, pm10_env, pm25_env, pm100_env, particles_03um, particles_05um, particles_10um, particles_25um, particles_50um, particles_100um = (
+            self._resultarray
+        )
         #
         # If we wanted to do some data munging, do it here.
         #
@@ -95,20 +99,34 @@ class PMSA003:
 
         # return results
         if result:
-            result[0]  = pm10_standard,
-            result[1]  = pm25_standard,
-            result[2]  = pm100_standard,
-            result[3]  = pm10_env,
-            result[4]  = pm25_env,
-            result[5]  = pm100_env,
-            result[6]  = particles_03um,
-            result[7]  = particles_05um,
-            result[8]  = particles_10um,
-            result[9]  = particles_25um,
-            result[10] = particles_50um,
+            result[0] = (pm10_standard,)
+            result[1] = (pm25_standard,)
+            result[2] = (pm100_standard,)
+            result[3] = (pm10_env,)
+            result[4] = (pm25_env,)
+            result[5] = (pm100_env,)
+            result[6] = (particles_03um,)
+            result[7] = (particles_05um,)
+            result[8] = (particles_10um,)
+            result[9] = (particles_25um,)
+            result[10] = (particles_50um,)
             result[11] = particles_100um
             return result
 
-        return array("i", (pm10_standard, pm25_standard, pm100_standard, pm10_env, \
-            pm25_env, pm100_env, particles_03um, particles_05um, particles_10um, \
-                particles_25um, particles_50um, particles_100um))
+        return array(
+            "i",
+            (
+                pm10_standard,
+                pm25_standard,
+                pm100_standard,
+                pm10_env,
+                pm25_env,
+                pm100_env,
+                particles_03um,
+                particles_05um,
+                particles_10um,
+                particles_25um,
+                particles_50um,
+                particles_100um,
+            ),
+        )

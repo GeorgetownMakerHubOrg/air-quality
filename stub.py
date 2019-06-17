@@ -4,14 +4,15 @@
 # Copyright (c) 2019 F. Pascal Girard
 
 # Professor Colin McCormick & Father Chris Wagner
-# 
+#
 # A stub sensor so we can test the core code without sensors
 # This will also allow us to measure current consumption of the ESP without sensor load
 #
 
+
 def measure():
-	return {
-        # BME680 
+    return {
+        # BME680
         "temperature": 32,
         "humidity": 80,
         "pressure": 100000,
@@ -27,5 +28,5 @@ def measure():
         "particles-10um": 10,
         "particles-25um": 25,
         "particles-50um": 50,
-        "particles-100um": 100
-        }
+        "particles-100um": 100,
+    }

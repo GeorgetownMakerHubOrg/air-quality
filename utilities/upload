@@ -1,20 +1,76 @@
 #!/bin/bash
+
 #port=/dev/ttys000
 port=/dev/tty.usbserial-1410
 #port=/dev/tty.SLAB_USBtoUART
 #port="/dev/tty.wchusbserialfd130"
 #port="/dev/tty.usbserial-1430"
-#port="/dev/tty.usbserial-14130" # for Lolin D32 ESP32 
-esptool.py --port $port erase_flash
-esptool.py --chip esp32 --port $port --baud 460800 write_flash -z --flash_mode dio --flash_freq 40m 0x1000 build/esp32-v1.10-194-g41e7ad6.bin
-#sleep 5
-cd ../ 				
+#port="/dev/tty.usbserial-14130" # for Lolin D32 ESP32
+
+# go back a directory if we are in the `utilities` directory
+if [ "$(basename "$PWD")" = "utilities" ]; then
+    cd .. || exit
+fi
+
+if [ ! -d "bme680" ]; then
+    echo "Missing bme680 sensor module directory!"
+    exit 1
+fi
+
+if [ ! -d "usmbus" ]; then
+    echo "Missing usmbus sensor module directory!"
+    exit 1
+fi
+
+
+###############################################################################
+#                              MicroPython Flash                              #
+###############################################################################
+
+
+# Flash MicroPython
+# esptool.py --port $port erase_flash
+# esptool.py --chip esp32 \
+#            --port $port \
+#            --baud 460800 \
+#            write_flash \
+#            --compress \
+#            --flash_mode dio \
+#            --flash_freq 40m 0x1000 utilities/build/esp32-v1.10-194-g41e7ad6.bin
+
+
+###############################################################################
+#                                File Transfer                                #
+###############################################################################
+
+
+# Copy Root Directory Python Files
 for file in *.py
-do 
-   echo $file
-   ampy -d 0.5 --port $port put $file
+do
+   echo "$file"
+   ampy -d 0.5 --port $port put "$file"
 done
-# add contributed libraries 
+
+# Copy utilities
+echo "Adding utilities... Almost there."
+ampy --port $port mkdir utilities
+for file in utilities/*.py
+do
+    echo "$file"
+    ampy -d 0.5 --port $port put "$file" "$file"
+done
+
+
+# Copy sensor-specific Python files
+echo "Adding sensors..."
+ampy --port $port mkdir sensors
+for file in sensors/*.py
+do
+    echo "$file"
+    ampy -d 0.5 --port $port put "$file" "$file"
+done
+
+# add contributed libraries
 echo -n "Adding 3rd party libraries... Hang on."
 ampy --port $port mkdir bme680
 echo -n "."
@@ -25,14 +81,13 @@ echo -n "."
 ampy --port $port put bme680/constants.py bme680/constants.py
 echo "."
 ampy --port $port put usmbus/__init__.py usmbus/__init__.py
-# add utilities
-echo "Adding utilities... Almost there."
-ampy --port $port mkdir utilities
-for file in utilities/*.py
-do
-	echo $file
-	ampy -d 0.5 --port $port put $file $file
-done
-id=`ampy --port $port run utilities/hwtest.py |grep chip|awk '{print $3}'`
-echo "Machine ID is" $id
-python3 utilities/setgrp.py $id
+
+
+###############################################################################
+#                                Adafruit IO                                  #
+###############################################################################
+
+
+id=$(ampy --port $port run utilities/hwtest.py |grep chip|awk '{print $3}')
+echo "Machine ID is: $id"
+python3 utilities/setgrp.py "$id"

@@ -9,12 +9,12 @@
 # also look at: https://github.com/BoschSensortec/BME680_driver for configuration information
 # this driver is too large for ESP8266's memory.
 
-import bme680
+from .. import bme680
 import time
 
 from machine import Pin
-from usmbus import SMBus
-from bme680 import constants
+from ..usmbus import SMBus
+from ..bme680 import constants
 
 i2c = SMBus(scl=Pin(22), sda=Pin(21))  # ESP32 only
 sensor = bme680.BME680(i2c_device=i2c, i2c_addr=constants.I2C_ADDR_SECONDARY)

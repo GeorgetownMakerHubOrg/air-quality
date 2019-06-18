@@ -21,8 +21,8 @@ def main():
     import utime  # ESP stuff
 
     # Version 905 sensors - comment this line for stub.py
-    import tphg
-    import pm25
+    from sensors import tphg
+    from sensors import pm25
 
     # import stub  # when no sensors are attached.
     import iot     # IOT networking

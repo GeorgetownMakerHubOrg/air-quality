@@ -99,17 +99,17 @@ class PMSA003:
 
         # return results
         if result:
-            result[0] = (pm10_standard,)
-            result[1] = (pm25_standard,)
-            result[2] = (pm100_standard,)
-            result[3] = (pm10_env,)
-            result[4] = (pm25_env,)
-            result[5] = (pm100_env,)
-            result[6] = (particles_03um,)
-            result[7] = (particles_05um,)
-            result[8] = (particles_10um,)
-            result[9] = (particles_25um,)
-            result[10] = (particles_50um,)
+            result[0] = pm10_standard
+            result[1] = pm25_standard
+            result[2] = pm100_standard
+            result[3] = pm10_env
+            result[4] = pm25_env
+            result[5] = pm100_env
+            result[6] = particles_03um
+            result[7] = particles_05um
+            result[8] = particles_10um
+            result[9] = particles_25um
+            result[10] = particles_50um
             result[11] = particles_100um
             return result
 

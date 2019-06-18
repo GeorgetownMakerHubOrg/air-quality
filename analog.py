@@ -8,17 +8,17 @@
 # Default is 0x48.
 #
 
-import array
-from machine import I2C, Pin   			  # create an I2C bus object for all I2C-based sensors.
 import ads1x15
+from machine import I2C, Pin       # create an I2C bus object for all I2C-based sensors.
 
-i2c = I2C(scl=Pin(5), sda=Pin(4))		  # create the I2C bus
-# 16 bit 
+i2c = I2C(scl=Pin(5), sda=Pin(4))  # create the I2C bus
+# 16 bit
 raw = ads1x15.ADS1115(i2c, address=0x48)
 
+
 def measure():
-	return {
-        "A0": raw.read(0),    
+    return {
+        "A0": raw.read(0),
         "A1": raw.read(1),
         "A2": raw.read(2),
         "A3": raw.read(3)

@@ -56,7 +56,9 @@ done
 #                                Adafruit IO                                  #
 ###############################################################################
 
+# NOTE: we must set the PYTHONPATH to allow importing `config` from the parent
+# directory.
 
 id=$(ampy --port $port run bin/hwtest.py |grep chip|awk '{print $3}')
 echo "Machine ID is: $id"
-python3 bin/setgrp.py "$id"
+PYTHONPATH=. python3 bin/setgrp.py "$id"

@@ -1,25 +1,15 @@
 #!/bin/bash
 
 #port=/dev/ttys000
-port=/dev/tty.usbserial-1410
+# port=/dev/tty.usbserial-1410
+port="/dev/tty.usbserial-1430"
 #port=/dev/tty.SLAB_USBtoUART
 #port="/dev/tty.wchusbserialfd130"
-#port="/dev/tty.usbserial-1430"
 #port="/dev/tty.usbserial-14130" # for Lolin D32 ESP32
 
 # go back a directory if we are in the `utilities` directory
 if [ "$(basename "$PWD")" = "utilities" ]; then
     cd .. || exit
-fi
-
-if [ ! -d "bme680" ]; then
-    echo "Missing bme680 sensor module directory!"
-    exit 1
-fi
-
-if [ ! -d "usmbus" ]; then
-    echo "Missing usmbus sensor module directory!"
-    exit 1
 fi
 
 
@@ -28,15 +18,18 @@ fi
 ###############################################################################
 
 
-# Flash MicroPython
-# esptool.py --port $port erase_flash
-# esptool.py --chip esp32 \
-#            --port $port \
-#            --baud 460800 \
-#            write_flash \
-#            --compress \
-#            --flash_mode dio \
-#            --flash_freq 40m 0x1000 utilities/build/esp32-v1.10-194-g41e7ad6.bin
+echo "Erasing ESP32 Flash Storage"
+esptool.py --port $port erase_flash 1>/dev/null
+
+echo "Flashing Micropython Binary"
+esptool.py --chip esp32 \
+           --port $port \
+           --baud 460800 \
+           write_flash \
+           --compress \
+           --flash_mode dio \
+           --flash_freq 40m 0x1000 utilities/build/esp32-v1.10-194-g41e7ad6.bin \
+           1>/dev/null
 
 
 ###############################################################################
@@ -44,43 +37,23 @@ fi
 ###############################################################################
 
 
-# Copy Root Directory Python Files
-for file in *.py
-do
-   echo "$file"
-   ampy -d 0.5 --port $port put "$file"
+# TODO: determine why the first ampy command after flashing fails
+# soft reset before beginning file transfer
+ampy --port $port reset
+
+# Create directories (excluding hidden files using the `-not` switch)
+echo "Creating Directories"
+for dir in $(find . -not -path '*/\.*' -type d \( ! -iname ".*" \)); do
+    echo " > ${dir}"
+    ampy --port $port mkdir "$dir"
 done
 
-# Copy utilities
-echo "Adding utilities... Almost there."
-ampy --port $port mkdir utilities
-for file in utilities/*.py
-do
-    echo "$file"
+# Copy all Python files
+echo "Copying Python Files..."
+for file in $(find . -name \*.py); do
+    echo " > ${file}"
     ampy -d 0.5 --port $port put "$file" "$file"
 done
-
-
-# Copy sensor-specific Python files
-echo "Adding sensors..."
-ampy --port $port mkdir sensors
-for file in sensors/*.py
-do
-    echo "$file"
-    ampy -d 0.5 --port $port put "$file" "$file"
-done
-
-# add contributed libraries
-echo -n "Adding 3rd party libraries... Hang on."
-ampy --port $port mkdir bme680
-echo -n "."
-ampy --port $port mkdir usmbus
-echo -n "."
-ampy --port $port put bme680/__init__.py bme680/__init__.py
-echo -n "."
-ampy --port $port put bme680/constants.py bme680/constants.py
-echo "."
-ampy --port $port put usmbus/__init__.py usmbus/__init__.py
 
 
 ###############################################################################

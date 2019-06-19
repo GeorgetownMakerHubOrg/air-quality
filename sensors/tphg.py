@@ -12,9 +12,9 @@
 import time
 
 from machine import Pin
-from libraries import bme680
-from libraries.usmbus import SMBus
-from libraries.bme680 import constants
+from lib import bme680
+from lib.usmbus import SMBus
+from lib.bme680 import constants
 
 i2c = SMBus(scl=Pin(22), sda=Pin(21))  # ESP32 only
 sensor = bme680.BME680(i2c_device=i2c, i2c_addr=constants.I2C_ADDR_SECONDARY)

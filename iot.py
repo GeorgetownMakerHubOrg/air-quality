@@ -6,7 +6,7 @@
 
 import network
 import sleep
-from utilities import config
+import config
 
 # Wifi stuff
 sta_ssid = config.STA_SSID

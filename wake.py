@@ -9,10 +9,9 @@
 # Don't forget to enable A0 battery as well as sleep (16 & Reset) - solder!
 
 
+import config
 import machine
 import sleep
-
-from utilities import config
 
 sleep_interval = config.SLEEP
 
@@ -21,8 +20,8 @@ def main():
     import utime  # ESP stuff
 
     # Version 905 sensors - comment this line for stub.py
-    import tphg
-    import pm25
+    from sensors import tphg
+    from sensors import pm25
 
     # import stub  # when no sensors are attached.
     import iot     # IOT networking

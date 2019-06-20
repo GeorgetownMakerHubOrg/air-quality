@@ -9,8 +9,9 @@
 #
 
 import machine
+from machine import Pin
 
-voltage = machine.ADC(0)
+voltage = machine.ADC(Pin(0))
 
 
 def measure():

@@ -8,7 +8,7 @@
 
 
 from machine import UART
-import pmsa003
+from lib.pmsa003 import pmsa003
 
 uart1 = UART(2, rx=0, tx=2, baudrate=9600)
 uart2 = UART(1, rx=26, tx=27, baudrate=9600)

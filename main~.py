@@ -4,28 +4,21 @@
 # Copyright (c) 2019 F. Pascal Girard
 
 import machine
-from machine import Timer
-
-"""
-# ESP32 Code - see below
-# from machine import TouchPad
-pad = TouchPad(Pin(14))
-"""
-
-timer = Timer(0)
-upgrade = False
-
-print("Running main")
+from machine import Timer, TouchPad, Pin
 
 
-def callback(pin):
-    global upgrade
-    upgrade = True
-    return upgrade
+TIMER_0 = Timer(0)
+
+# TODO: get values from configuration file
+# Touch value is around 500-600 when untouched, and 10-20 when touched
+TOUCH_PAD = TouchPad(Pin(14))
+TOUCH_THRESHOLD = 50
 
 
 def run(timer):
-    if not upgrade:
+
+    # When the touch value is above the threshold, then it is not being touched
+    if TOUCH_PAD.read() > TOUCH_THRESHOLD:
         print("Running sensors...")
         import wake
 
@@ -48,14 +41,4 @@ if machine.reset_cause() == machine.DEEPSLEEP_RESET:
 
 else:  # an opportunity to enter WebREPL after hard reset
     print("Hard reset")
-    # ESP8266 Code
-    """
-    pin0 = Pin(0, Pin.IN, Pin.PULL_UP)   	# set GPIO0 as input with pullup
-    pin0.irq(trigger=Pin.IRQ_RISING, handler=callback)
-    """
-    # ESP32 Code
-    """
-    """
-    timer.init(period=5000, mode=Timer.ONE_SHOT, callback=run)
-
-    # ESP32 Code
+    TIMER_0.init(period=5000, mode=Timer.ONE_SHOT, callback=run)

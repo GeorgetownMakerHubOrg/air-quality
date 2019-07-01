@@ -27,3 +27,7 @@ TS_KEY = "THINGSPEAKWRITEKEY"
 
 # Sleep time for wake/sleep cycle in milliseconds
 SLEEP = 60 * 1000
+
+# Capacitive Touch Parameters
+TOUCH_PIN = 14
+TOUCH_THRESHOLD = 100

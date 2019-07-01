@@ -5,26 +5,26 @@
 
 import machine
 from machine import Timer, TouchPad, Pin
+from config import TOUCH_PIN, TOUCH_THRESHOLD
 
 
 TIMER_0 = Timer(0)
-
-# TODO: get values from configuration file
-# Touch value is around 500-600 when untouched, and 10-20 when touched
-TOUCH_PAD = TouchPad(Pin(14))
-TOUCH_THRESHOLD = 50
+TOUCH_PAD = TouchPad(Pin(TOUCH_PIN))
 
 
 def run(timer):
 
+    touch_value = TOUCH_PAD.read()
+    print("Touch Value: {}, Touch Threshold {}".format(touch_value, TOUCH_THRESHOLD))
+
     # When the touch value is above the threshold, then it is not being touched
-    if TOUCH_PAD.read() > TOUCH_THRESHOLD:
-        print("Running sensors...")
+    if touch_value > TOUCH_THRESHOLD:
+        print("Running Sensors...")
         import wake
 
         wake.main()
     else:
-        print("Upgrading...")
+        print("Starting AP and Web REPL...")
         import webrepl
         import iot
 

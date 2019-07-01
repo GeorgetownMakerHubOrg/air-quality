@@ -1,6 +1,5 @@
 __pycache__
 bme280.py
-bme680.py
 config.py
 ads1x15.py
 STIA-436.gsheet
@@ -10,9 +9,7 @@ ClassNotes.txt
 ppd42ns.py
 Collateral
 Class
-bme680
 tests
-usmbus
 PCB
 AQ-Shield
 Base

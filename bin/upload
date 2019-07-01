@@ -12,16 +12,35 @@ if [ "$(basename "$PWD")" = "bin" ]; then
     cd .. || exit
 fi
 
+###############################################################################
+#                              Helper Functions                               #
+###############################################################################
+
+# Display a spinning icon while the process specified by pid argument $1 is
+# running, with an optional message $2
+display_spinner()
+{
+  pid="$1"
+  message="$2"
+
+  i=0
+  spin='-\|/'
+  while kill -0 "$pid" 2>/dev/null
+  do
+    i=$(( (i+1) %4 ))
+    printf "\r[%s] %s" "${spin:$i:1}" "$message"
+    sleep .1
+  done
+  printf "\r[*] %s\n" "$message"
+}
 
 ###############################################################################
 #                              MicroPython Flash                              #
 ###############################################################################
 
+esptool.py --port $port erase_flash 1>/dev/null &
+display_spinner $! "Erasing ESP32 Flash Storage"
 
-echo "Erasing ESP32 Flash Storage"
-esptool.py --port $port erase_flash 1>/dev/null
-
-echo "Flashing Micropython Binary"
 esptool.py --chip esp32 \
            --port $port \
            --baud 460800 \
@@ -29,7 +48,8 @@ esptool.py --chip esp32 \
            --compress \
            --flash_mode dio \
            --flash_freq 40m 0x1000 bin/build/esp32-v1.10-194-g41e7ad6.bin \
-           1>/dev/null
+           1>/dev/null &
+display_spinner $! "Flashing Micropython Binary"
 
 
 ###############################################################################
@@ -40,14 +60,14 @@ esptool.py --chip esp32 \
 # Create directories (excluding hidden files using the `-not` switch)
 echo "Creating Directories"
 for dir in $(find . -not -path '*/\.*' -type d \( ! -iname ".*" \)); do
-    echo " > ${dir}"
+    echo "  ${dir}"
     ampy -d 0.5 --port $port mkdir "$dir"
 done
 
 # Copy all Python files
 echo "Copying Python Files..."
 for file in $(find . -name \*.py); do
-    echo " > ${file}"
+    echo "  ${file}"
     ampy -d 0.5 --port $port put "$file" "$file"
 done
 

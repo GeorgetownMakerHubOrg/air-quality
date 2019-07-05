@@ -24,21 +24,22 @@ class pm25(object):
     def __init__(self, uart_id, uart_rx, uart_tx, uart_baud=9600):
         # TODO: try/catch, and return -1s when the sensor is not attached
         uart = UART(uart_id, rx=uart_rx, tx=uart_tx, baudrate=uart_baud)
+        self.id = uart_id
         self.pm = pmsa003.PMSA003(uart)
 
     def measure(self):
         data = self.pm.read_compensated_data()
         return {
-            "pm10-standard": data[0],
-            "pm25-standard": data[1],
-            "pm100-standard": data[2],
-            "pm10-env": data[3],
-            "pm25-env": data[4],
-            "pm100-env": data[5],
-            "particles-03um": data[6],
-            "particles-05um": data[7],
-            "particles-10um": data[8],
-            "particles-25um": data[9],
-            "particles-50um": data[10],
-            "particles-100um": data[11],
+            f"pm10-standard-{self.id}": data[0],
+            f"pm25-standard-{self.id}": data[1],
+            f"pm100-standard-{self.id}": data[2],
+            f"pm10-env-{self.id}": data[3],
+            f"pm25-env-{self.id}": data[4],
+            f"pm100-env-{self.id}": data[5],
+            f"particles-03um-{self.id}": data[6],
+            f"particles-05um-{self.id}": data[7],
+            f"particles-10um-{self.id}": data[8],
+            f"particles-25um-{self.id}": data[9],
+            f"particles-50um-{self.id}": data[10],
+            f"particles-100um-{self.id}": data[11],
         }

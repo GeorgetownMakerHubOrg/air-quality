@@ -20,8 +20,8 @@ def main():
     import utime  # ESP stuff
 
     # Version 905 sensors - comment this line for stub.py
-    from sensors import tphg
-    from sensors import pm25
+    # from sensors import tphg
+    from sensors.pm25 import pm25
 
     # import stub  # when no sensors are attached.
     import iot     # IOT networking
@@ -39,10 +39,14 @@ def main():
     # aq.update(enviro.measure())
     # aq.update(ppd42.measure())
     # aq.update(tph.measure())
-    aq.update(tphg.measure())
+    # aq.update(tphg.measure())
     # aq.update(stub.measure())> # when you only want the MCU and no sensors.
     # for reasons I can't explain, UART takes time to setup - so do this last? WTF.
-    aq.update(pm25.measure())
+
+    pm25_1 = pm25(1, 26, 27)
+    pm25_2 = pm25(2, 0, 2)
+    aq.update(pm25_1.measure())
+    aq.update(pm25_2.measure())
 
     iot.init_ap(False)
     iot.init_sta(True)

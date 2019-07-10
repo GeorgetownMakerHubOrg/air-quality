@@ -30,16 +30,16 @@ class pm25(object):
     def measure(self):
         data = self.pm.read_compensated_data()
         return {
-            f"pm10-standard-{self.id}": data[0],
-            f"pm25-standard-{self.id}": data[1],
-            f"pm100-standard-{self.id}": data[2],
-            f"pm10-env-{self.id}": data[3],
-            f"pm25-env-{self.id}": data[4],
-            f"pm100-env-{self.id}": data[5],
-            f"particles-03um-{self.id}": data[6],
-            f"particles-05um-{self.id}": data[7],
-            f"particles-10um-{self.id}": data[8],
-            f"particles-25um-{self.id}": data[9],
-            f"particles-50um-{self.id}": data[10],
-            f"particles-100um-{self.id}": data[11],
+            "pm10-standard-uart"+str(self.id): data[0],
+            "pm25-standard-uart"+str(self.id): data[1],
+            "pm100-standard-uart"+str(self.id): data[2],
+            "pm10-env-uart"+str(self.id): data[3],
+            "pm25-env-uart"+str(self.id): data[4],
+            "pm100-env-uart"+str(self.id): data[5],
+            "particles-03um-uart"+str(self.id): data[6],
+            "particles-05um-uart"+str(self.id): data[7],
+            "particles-10um-uart"+str(self.id): data[8],
+            "particles-25um-uart"+str(self.id): data[9],
+            "particles-50um-uart"+str(self.id): data[10],
+            "particles-100um-uart"+str(self.id): data[11],
         }

@@ -31,3 +31,6 @@ SLEEP = 60 * 1000
 # Capacitive Touch Parameters
 TOUCH_PIN = 14
 TOUCH_THRESHOLD = 100
+
+# Enable Debugging Statements
+DEBUG = True

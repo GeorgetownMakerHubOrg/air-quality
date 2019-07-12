@@ -39,22 +39,17 @@ The prototype has the following components:
 1. Let's track low power options like [nanoPower](http://nanopower.no/#p) which uses the nrf chipset from Norway.
 1. More details on this monitor's design and roadmap are described in this [Google document](https://docs.google.com/document/d/1_XBc5c5FSMccZlWRLiqR3a8eLAP81eoLvET66j237zA).
 
-## Possible Improvements:
+## Data Collection choices:
 
-Why I would argue that Adafruit.IO is better than ThingSpeak:
+Why Adafruit.IO is arguably better than ThingSpeak:
 
-	1. Great documentation
-	1. Solid REST & MQTT support
-	1. You can download all data from the push of one button
-	1. Fields can be set up as Key/Value pairs e.g "Temperature", 32
-	1. You can create fields on the fly
-	1. You can create groups (monitors) on the fly
-	1. You can set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
-1. Implement ntp so that we can sample at given times (and not just intervals)
-1. Power/Battery improvements:
-	- We still need to either combine the results of redundant sensors or report both
-	- The BME280 draws power from the 3.3v even during ESP deep sleep. Can we invoke deep sleep on sensors too prior to shutting down the ESP?
-	- On a battery monitor when the lithium battery hits a certain threshold, enter deep sleep to prevent total depletion.
+    - Great documentation
+	- Solid REST & MQTT support
+	- You can download all data from the push of one button
+	- Fields can be set up as Key/Value pairs e.g "Temperature", 32
+	- You can create fields on the fly
+	- You can create groups (monitors) on the fly
+	- You can set alerts using IFTTT webhooks to alert for events (high particulate matter sensor readings when battery hits a threshold).
 
 ## Notes
 
@@ -83,17 +78,18 @@ Why I would argue that Adafruit.IO is better than ThingSpeak:
 
 ## AQ sites worth tracking
 
+* [OpenAQ](https://openaq.org/) - fighting air inequality through open data, open-source tools, and a global, grassroots community.   Georgetown connections?   [Krista Hasenkopf](https://advanced.jhu.edu/about-us/faculty/christa-hasenkopf/) is a leader at OpenAQ as is [Joe Flasher](https://github.com/jflasher). Their funding primarily comes from [here](https://openaq.org/#/about?_k=28cy2c).
+
 * [CityOS](https://cityos-air.readme.io/) - Sarajevo-based initiative that uses the ESP, DHT-11, and PMS-003 sensors - not weather proof - Neopixels for live AQ visualization. 
 
 * [MySense](https://github.com/teusH/MySense) - Python-based repo that apparently offers a framework for attaching myriads of sensors.  Single contributor seeking funding.
-
-* [OpenAQ](https://openaq.org/) - fighting air inequality through open data, open-source tools, and a global, grassroots community.   Georgetown connections?   [Krista Hasenkopf](https://advanced.jhu.edu/about-us/faculty/christa-hasenkopf/) is a leader at OpenAQ as is [Joe Flasher](https://github.com/jflasher). Their funding primarily comes from [here](https://openaq.org/#/about?_k=28cy2c).
 
 * [Nature publishes a good article on air quality monitoring in East Africa](https://www.nature.com/articles/d41586-018-04330-x) - it also raises GeoHealth's work in [Kenya and Tanzania](https://geohealthhub.org/2016/06/30/usc-training-launches-a-new-era-of-air-pollution-health-research-in-eastern-africa/) which is run out of [NIH](https://www.fic.nih.gov/Programs/Pages/environmental-occupational.aspx).
 
 ## Code Still To Do
 
 * Port ESP8266 upgrade code in main~.py to ESP32
+
 ## Installation
 
 These instructions are provided for Georgetown students who wish to build GUAQ from scratch in the Maker Hub.   These installation steps are a work in progress but have been tested on Linux and Mac OSX systems:

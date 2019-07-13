@@ -20,8 +20,7 @@ def main():
     import utime  # ESP stuff
 
     # Version 905 sensors has BME280, BME680 & PMS-A003 sensors - comment this line for stub.py
-    # from sensors import tphg
-
+    from sensors.tphg import tphg
     from sensors.tph import tph
     from sensors.pm25 import pm25
 
@@ -44,7 +43,9 @@ def main():
     tph_1 = tph(22, 21)
     aq.update(tph_1.measure())
 
-    aq.update(tphg.measure())
+    tphg_1 = tph(22, 21)
+    aq.update(tphg_1.measure())
+
     # aq.update(stub.measure())> # when you only want the MCU and no sensors.
     # for reasons I can't explain, UART takes time to setup - so do this last? WTF.
     pm25_1 = pm25(1, 26, 27)

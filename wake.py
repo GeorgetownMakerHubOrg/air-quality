@@ -43,7 +43,7 @@ def main():
     tph_1 = tph(22, 21)
     aq.update(tph_1.measure())
 
-    tphg_1 = tph(22, 21)
+    tphg_1 = tphg(22, 21)
     aq.update(tphg_1.measure())
 
     # aq.update(stub.measure())> # when you only want the MCU and no sensors.

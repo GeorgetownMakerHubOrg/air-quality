@@ -79,15 +79,18 @@ class tphg(object):
             # gas_baseline = sum(gas_buffer) / len(gas_buffer)
 
             if self.sensor.get_sensor_data():
-                # output = "{0:.2f} C,{1:.2f} hPa,{2:.2f} %RH".format(sensor.data.temperature, sensor.data.pressure, sensor.data.humidity)
-                data = {
-                    "temperature-bme680_" + str(self.address): self.sensor.data.temperature,  # Celcius
-                    "pressure-bme680_" + str(self.address): self.sensor.data.pressure,        # kPa
-                    "humidity-bme680_" + str(self.address): self.sensor.data.humidity,        # %
+                measurements = {
+                    "temperature-bme680_0x{:02x}".format(self.address): self.sensor.data.temperature,  # Celcius
+                    "pressure-bme680_0x{:02x}".format(self.address): self.sensor.data.pressure,        # kPa
+                    "humidity-bme680_0x{:02x}".format(self.address): self.sensor.data.humidity,        # %
                 }
                 if self.sensor.data.heat_stable:
-                    data["voc"] = self.sensor.data.gas_resistance
-            return data
+                    measurements["voc"] = self.sensor.data.gas_resistance
+
+                if DEBUG:
+                    print(measurements)
+
+            return measurements
 
         except KeyboardInterrupt:
             pass

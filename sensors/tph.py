@@ -13,7 +13,7 @@
 from machine import I2C, Pin
 
 from config import DEBUG
-from sensors.bme280 import bme280
+from lib.bme280 import bme280
 
 
 class tph(object):
@@ -39,12 +39,15 @@ class tph(object):
 
     def measure(self):
 
-        if DEBUG:
-            print("BME 280 Values:", self.bme280.values)
-
-        raw = self.bme280.read_compensated_data()
-        return {
-            "temperature_" + str(self.address): (raw[0] / 100.0) * (9 / 5) + 32,  # Fahrenheit
-            "pressure_" + str(self.address): raw[1] / (256 * 1000.0),             # kPa
-            "humidity_" + str(self.address): raw[2] / 1024.0,                     # %
+        data = self.bme280.read_compensated_data()
+        measurements = {
+            "temperature-bme280_0x{:02x}".format(self.address): (data[0] / 100.0) * (9 / 5) + 32,  # Fahrenheit
+            "pressure-bme280_0x{:02x}".format(self.address): data[1] / (256 * 1000.0),             # kPa
+            "humidity-bme280_0x{:02x}".format(self.address): data[2] / 1024.0,                     # %
         }
+
+        if DEBUG:
+            print(measurements)
+
+        return measurements
+

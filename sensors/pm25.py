@@ -24,7 +24,7 @@ class pm25(object):
     """
 
     def __init__(self, uart_id, uart_rx, uart_tx, uart_baud=9600):
-        # TODO: try/catch, and return -1s when the sensor is not attached
+
         uart = UART(uart_id, rx=uart_rx, tx=uart_tx, baudrate=uart_baud, timeout=5000)
 
         if DEBUG:

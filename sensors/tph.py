@@ -10,7 +10,7 @@
 # Do we want to use median() to take multiple samples to remove noise?
 
 from machine import I2C, Pin  # create an I2C bus object for all I2C-based sensors.
-import bme280
+from sensors.bme280 import bme280
 
 # i2c = I2C(scl=Pin(5), sda=Pin(4))       # create I2C bus on ESP8266
 i2c = I2C(scl=Pin(22), sda=Pin(21))       # create I2C bus on Lolin ESP32

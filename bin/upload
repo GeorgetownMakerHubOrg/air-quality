@@ -47,7 +47,7 @@ esptool.py --chip esp32 \
            write_flash \
            --compress \
            --flash_mode dio \
-           --flash_freq 40m 0x1000 bin/build/esp32-v1.10-194-g41e7ad6.bin \
+           --flash_freq 40m 0x1000 bin/build/up-firmware.bin \
            1>/dev/null &
 display_spinner $! "Flashing Micropython Binary"
 

@@ -1,4 +1,6 @@
-# STIA 436 - Air Quality Innovation
+![GUAQ Logo](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/contributing-guidelines/static/GUAQ-150px.png)
+
+# Georgetown University Air Quality [STIA 436 - Air Quality Innovation]
 
 ![alt text](https://github.com/GeorgetownMakerHubOrg/air-quality/blob/master/static/Layla-905.jpg)
 

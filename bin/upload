@@ -4,9 +4,17 @@ set -e
 set -u
 
 USAGE="\
-Usage: 
-  ./bin/upload DEVICE COMMAND
-Example: 
+Usage:
+  ./bin/upload DEVICE [COMMAND]
+
+  Deploys Air Quality code to the connected GUAQ DEVICE. If the optional
+  \`reinstall\` command is specified, then the device will be erased,
+  MicroPython will be installed, and the code will be deployed.
+
+Commands:
+  reinstall  Erases the device, and flashes MicroPython before uploading code
+
+Example:
   ./bin/upload /dev/tty.usb-1410 upload"
 
 # go back a directory if we are in the `bin` directory
@@ -24,6 +32,13 @@ fi
 
 DEVICE="$1"
 COMMAND="$2"
+
+if [ "$COMMAND" != "reinstall" ]; then
+    echo "ERROR: incorrect command specified!"
+    echo
+    echo "$USAGE"
+    exit 1
+fi
 
 ###############################################################################
 #                              Helper Functions                               #
@@ -51,24 +66,30 @@ display_spinner()
 #                              MicroPython Flash                              #
 ###############################################################################
 
-esptool.py --port $DEVICE erase_flash 1>/dev/null &
-display_spinner $! "Erasing ESP32 Flash Storage"
+# Only flashes MicroPython if `upgrade` is specified
 
-esptool.py --chip esp32 \
-           --port $DEVICE \
-           --baud 460800 \
-           write_flash \
-           --compress \
-           --flash_mode dio \
-           --flash_freq 40m 0x1000 bin/build/up-firmware.bin \
-           1>/dev/null &
-display_spinner $! "Flashing Micropython Binary"
+if [ "$COMMAND" == "reinstall" ]; then
+  esptool.py --port "$DEVICE" erase_flash 1>/dev/null &
+  display_spinner $! "Erasing ESP32 Flash Storage"
 
+  esptool.py --chip esp32 \
+             --port "$DEVICE" \
+             --baud 460800 \
+             write_flash \
+             --compress \
+             --flash_mode dio \
+             --flash_freq 40m 0x1000 bin/build/up-firmware.bin \
+             1>/dev/null &
+  display_spinner $! "Flashing Micropython Binary"
+fi
 
 ###############################################################################
 #                                File Transfer                                #
 ###############################################################################
 
+
+# NOTE: no conditional check is required, as this runs on both upload and
+# upgrade, however, this may change if new commands are introduced.
 
 # Create directories (excluding hidden files using the `-not` switch)
 echo "Creating Directories"

@@ -66,7 +66,7 @@ display_spinner()
 #                              MicroPython Flash                              #
 ###############################################################################
 
-# Only flashes MicroPython if `upgrade` is specified
+# Only flashes MicroPython if `reinstall` is specified
 
 if [ "$COMMAND" == "reinstall" ]; then
   esptool.py --port "$DEVICE" erase_flash 1>/dev/null &
@@ -87,9 +87,6 @@ fi
 #                                File Transfer                                #
 ###############################################################################
 
-
-# NOTE: no conditional check is required, as this runs on both upload and
-# upgrade, however, this may change if new commands are introduced.
 
 # Create directories (excluding hidden files using the `-not` switch)
 echo "Creating Directories"
@@ -115,4 +112,4 @@ done
 
 id=$(ampy --port $DEVICE run bin/hwtest.py |grep chip|awk '{print $3}')
 echo "Machine ID is: $id"
-PYTHONPATH=. python3 bin/setgrp.py "$id"
+PYTHONPATH=. python bin/setgrp.py "$id"

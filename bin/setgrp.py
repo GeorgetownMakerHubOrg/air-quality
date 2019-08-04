@@ -1,34 +1,44 @@
+import sys
 import config as constants
-from sys import argv
 
 # HTTP & Adafruit.io stuff
-aio_key = constants.X_AIO_KEY
-user = constants.USER
+AIO_KEY = constants.X_AIO_KEY
+USER = constants.USER
+
+# NOTE: we could use a module such as `six` to support both Python 2 and Python
+# 3, or we could conditionally use libraries after checking `sys.version_info`
+
+if sys.version_info[0] != 2:
+    raise Exception("Incorrect Python version; this script is intended to be used with Python 2")
+
+if len(sys.argv) != 2:
+    raise Exception("Invalid number of input arguments, please specify Group ID")
 
 
 def io_post(group):
     import json
-    import requests
+    import urllib2
 
-    headers = {"X-AIO-Key": aio_key, "Content-Type": "application/json"}
-    url = "https://io.adafruit.com/api/v2/" + user + "/groups"
-    # url='https://io.adafruit.com/api/v2/'+user+'/feeds/'+group+'.'+feed+'/data.json'
+    headers = {"X-AIO-Key": AIO_KEY, "Content-Type": "application/json"}
+
+    url = "https://io.adafruit.com/api/v2/" + USER + "/groups"
     print("URL is:", url)
-    mystr = {"name": group, "description": "Air Quality Monitor - STIA436"}
-    # mystr = { "location": {"lat": lat, "lon": lon}, "feeds": mylist}
-    print("Mystr:", mystr)
-    data = json.dumps(mystr)
-    # POST response
+
+    data_dict = {"name": group, "description": "Air Quality Monitor - STIA436"}
+    data = json.dumps(data_dict).encode('UTF-8')
+    print("JSON Payload:", data_dict)
+
     try:
-        response = requests.post(url, headers=headers, data=data)
-        print(response.text)
-    except OSError as err:
-        print("OS error: {0}".format(err))
-        # NOTE: sleep is not imported, and sleep_interval is undefined
-        sleep.init(sleep_interval)
+        req = urllib2.Request(url, data=data, headers=headers)
+        response = urllib2.urlopen(req)
+        print(response.read())
+    except Exception as e:
+        # An error will be thrown if the group already exists, or if the
+        # maximum number of groups has been reached
+        print("Error Posting to IO: {}".format(e))
     else:
         response.close()
 
 
 print("Setting Group in Adafruit.IO")
-io_post(argv[1])
+io_post(sys.argv[1])

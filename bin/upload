@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-set -u
 
 USAGE="\
 Usage:
@@ -23,7 +22,7 @@ if [ "$(basename "$PWD")" = "bin" ]; then
 fi
 
 # check that correct number of arguments are provided
-if [ ! "$#" -eq 2 ]; then
+if [ ! "$#" -eq 1 ]; then
    echo "ERROR: Incorrect number of arguments provided!"
    echo
    echo "$USAGE"
@@ -33,7 +32,8 @@ fi
 DEVICE="$1"
 COMMAND="$2"
 
-if [ "$COMMAND" != "reinstall" ]; then
+# Allow command values of `reinstall` or nothing
+if [ "$COMMAND" != "reinstall" ] && [ "$COMMAND" != "" ]; then
     echo "ERROR: incorrect command specified!"
     echo
     echo "$USAGE"

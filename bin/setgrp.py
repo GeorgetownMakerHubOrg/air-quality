@@ -1,27 +1,27 @@
+from __future__ import print_function
+
+import json
 import sys
+
 import config as constants
 
-# HTTP & Adafruit.io stuff
-AIO_KEY = constants.X_AIO_KEY
-USER = constants.USER
-
-# NOTE: we could use a module such as `six` to support both Python 2 and Python
-# 3, or we could conditionally use libraries after checking `sys.version_info`
-
-if sys.version_info[0] != 2:
-    raise Exception("Incorrect Python version; this script is intended to be used with Python 2")
-
-if len(sys.argv) != 2:
-    raise Exception("Invalid number of input arguments, please specify Group ID")
+# Conditionally import `urllib` to work with Python 2 & 3
+if sys.version_info[0] == 3:
+    from urllib.request import urlopen, Request
+else:
+    from urllib2 import urlopen, Request
 
 
 def io_post(group):
-    import json
-    import urllib2
+    """
+    Post device ID to Adafruit IO to register group
 
-    headers = {"X-AIO-Key": AIO_KEY, "Content-Type": "application/json"}
+    @param group: Group ID for the device
+    """
 
-    url = "https://io.adafruit.com/api/v2/" + USER + "/groups"
+    headers = {"X-AIO-Key": constants.X_AIO_KEY, "Content-Type": "application/json"}
+
+    url = "https://io.adafruit.com/api/v2/" + constants.USER + "/groups"
     print("URL is:", url)
 
     data_dict = {"name": group, "description": "Air Quality Monitor - STIA436"}
@@ -29,8 +29,8 @@ def io_post(group):
     print("JSON Payload:", data_dict)
 
     try:
-        req = urllib2.Request(url, data=data, headers=headers)
-        response = urllib2.urlopen(req)
+        req = Request(url, data=data, headers=headers)
+        response = urlopen(req)
         print(response.read())
     except Exception as e:
         # An error will be thrown if the group already exists, or if the
@@ -40,5 +40,11 @@ def io_post(group):
         response.close()
 
 
-print("Setting Group in Adafruit.IO")
-io_post(sys.argv[1])
+if __name__ == "__main__":
+
+    if len(sys.argv) != 2:
+        raise Exception("Invalid number of input arguments, please specify Group ID")
+
+    print("Setting Group in Adafruit.IO")
+    io_post(sys.argv[1])
+

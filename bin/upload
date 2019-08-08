@@ -14,7 +14,7 @@ Commands:
   reinstall  Erases the device, and flashes MicroPython before uploading code
 
 Example:
-  ./bin/upload /dev/tty.usb-1410 upload"
+  ./bin/upload /dev/tty.usb-1410 reinstall"
 
 # go back a directory if we are in the `bin` directory
 if [ "$(basename "$PWD")" = "bin" ]; then
@@ -22,7 +22,7 @@ if [ "$(basename "$PWD")" = "bin" ]; then
 fi
 
 # check that correct number of arguments are provided
-if [ ! "$#" -eq 1 ]; then
+if [ ! "$#" -eq 1 ] && [ ! "$#" -eq 2 ]; then
    echo "ERROR: Incorrect number of arguments provided!"
    echo
    echo "$USAGE"

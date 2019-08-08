@@ -11,13 +11,14 @@ if sys.version_info < (3, 0):
 
 
 MSG_PROMPT = """
-Plug in your microcontroller, then press <ENTER>.
+Plug in your device, then press <ENTER>.
 
-DO NOT plug in any other devices at this time...\
+WARNING: if your device was already plugging in, then press `Ctrl+C` to cancel
+this operation, and restart.
 """
 
 
-def detect_device(wait_time=2.5):
+def detect_device(device_glob='/dev/tty*', wait_time=2.5):
     """
     Monitors the list of devices, prompting the user to plug in the device, and
     detects the newly attached device
@@ -27,7 +28,7 @@ def detect_device(wait_time=2.5):
     """
 
     # list of terminal devices
-    ttys_before = glob.glob("/dev/tty*")
+    ttys_before = glob.glob(device_glob)
 
     # prompt user to plug in the device, and re-check ttys
     print(MSG_PROMPT)
@@ -36,13 +37,13 @@ def detect_device(wait_time=2.5):
     # find new terminal entries, retry until a new device is shown...
     ttys_diff = []
     while True:
-        ttys_new = glob.glob("/dev/tty*")
+        ttys_new = glob.glob(device_glob)
         ttys_diff = [t for t in ttys_new if t not in ttys_before]
         if ttys_diff:
             break
         else:
             time.sleep(wait_time)
-            print("No device was detected! Trying again...")
+            print("Device not yet detected - Trying again...")
 
     return ttys_diff[0]
 
@@ -61,4 +62,4 @@ def connect_screen(device, prompt=True, baud=115200):
 
 
 if __name__ == "__main__":
-    detect_device()
+    print(detect_device())

@@ -3,7 +3,11 @@ from __future__ import print_function
 import json
 import sys
 
-import config as constants
+try:
+    import config as constants
+except ImportError:
+    sys.path.append(".")
+    import config as constants
 
 # Conditionally import `urllib` to work with Python 2 & 3
 if sys.version_info[0] == 3:

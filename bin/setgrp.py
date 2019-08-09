@@ -36,10 +36,10 @@ def io_post(group):
         req = Request(url, data=data, headers=headers)
         response = urlopen(req)
         print(response.read())
-    except Exception as e:
+    except Exception:
         # An error will be thrown if the group already exists, or if the
         # maximum number of groups has been reached
-        print("Error Posting to IO: {}".format(e))
+        print("Error Posting to IO; this is likely due to the device already being assigned.")
     else:
         response.close()
 

@@ -6,7 +6,16 @@ cd "$(dirname "$BASH_SOURCE")" || {
     exit 1
 }
 
+# install python dependencies
+echo -e "\n\n***********************************"
+echo "Checking for python dependencies..."
+echo "***********************************"
+
+pip install ampy
+pip install esptool
+echo -e "***********************************\n\n"
+
 python bin/upload.py
 
 echo "Complete!"
-echo "You may not close this window."
+echo "You may now close this window."

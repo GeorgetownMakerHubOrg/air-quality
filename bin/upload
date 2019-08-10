@@ -92,14 +92,14 @@ fi
 echo "Creating Directories"
 for dir in $(find . -not -path '*/\.*' -type d \( ! -iname ".*" \)); do
     echo "  ${dir}"
-    ampy -d 0.5 --port $DEVICE mkdir "$dir"
+    ampy -d 0.5 --port "$DEVICE" mkdir "$dir"
 done
 
 # Copy all Python files
 echo "Copying Python Files..."
 for file in $(find . -name \*.py); do
     echo "  ${file}"
-    ampy -d 0.5 --port $DEVICE put "$file" "$file"
+    ampy -d 0.5 --port "$DEVICE" put "$file" "$file"
 done
 
 
@@ -110,6 +110,6 @@ done
 # NOTE: we must set the PYTHONPATH to allow importing `config` from the parent
 # directory.
 
-id=$(ampy --port $DEVICE run bin/hwtest.py |grep chip|awk '{print $3}')
+id=$(ampy --port "$DEVICE" run bin/hwtest.py |grep chip|awk '{print $3}')
 echo "Machine ID is: $id"
 PYTHONPATH=. python bin/setgrp.py "$id"

@@ -38,7 +38,7 @@ class SpinnerThread(threading.Thread):
     """
 
     def __init__(self, message=None):
-        super().__init__(target=self._spin)
+        super(self).__init__(target=self._spin)
         self._stopevent = threading.Event()
         self._message = message
 
@@ -75,6 +75,10 @@ def get_dirs_and_files():
 
         dirs += [dirpath + "/" + d for d in dirnames]
         files += [dirpath + "/" + f for f in filenames if f.endswith(".py")]
+
+    # Uncomment for debug output of the directory/file listings
+    #sys.stdout.write("Value: %s" % dirs)
+    #sys.stdout.write("Value: %s" % files)
 
     return (dirs, files)
 

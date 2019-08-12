@@ -1,15 +1,43 @@
 #!/bin/bash
 
-#port=/dev/ttys000
-port=/dev/tty.usbserial-1410
-#port="/dev/tty.usbserial-1430"
-#port=/dev/tty.SLAB_USBtoUART
-#port="/dev/tty.wchusbserialfd130"
-#port="/dev/tty.usbserial-14130" # for Lolin D32 ESP32
+set -e
+
+USAGE="\
+Usage:
+  ./bin/upload DEVICE [COMMAND]
+
+  Deploys Air Quality code to the connected GUAQ DEVICE. If the optional
+  \`reinstall\` command is specified, then the device will be erased,
+  MicroPython will be installed, and the code will be deployed.
+
+Commands:
+  reinstall  Erases the device, and flashes MicroPython before uploading code
+
+Example:
+  ./bin/upload /dev/tty.usb-1410 reinstall"
 
 # go back a directory if we are in the `bin` directory
 if [ "$(basename "$PWD")" = "bin" ]; then
     cd .. || exit
+fi
+
+# check that correct number of arguments are provided
+if [ ! "$#" -eq 1 ] && [ ! "$#" -eq 2 ]; then
+   echo "ERROR: Incorrect number of arguments provided!"
+   echo
+   echo "$USAGE"
+   exit 1
+fi
+
+DEVICE="$1"
+COMMAND="$2"
+
+# Allow command values of `reinstall` or nothing
+if [ "$COMMAND" != "reinstall" ] && [ "$COMMAND" != "" ]; then
+    echo "ERROR: incorrect command specified!"
+    echo
+    echo "$USAGE"
+    exit 1
 fi
 
 ###############################################################################
@@ -38,19 +66,22 @@ display_spinner()
 #                              MicroPython Flash                              #
 ###############################################################################
 
-esptool.py --port $port erase_flash 1>/dev/null &
-display_spinner $! "Erasing ESP32 Flash Storage"
+# Only flashes MicroPython if `reinstall` is specified
 
-esptool.py --chip esp32 \
-           --port $port \
-           --baud 460800 \
-           write_flash \
-           --compress \
-           --flash_mode dio \
-           --flash_freq 40m 0x1000 bin/build/up-firmware.bin \
-           1>/dev/null &
-display_spinner $! "Flashing Micropython Binary"
+if [ "$COMMAND" == "reinstall" ]; then
+  esptool.py --port "$DEVICE" erase_flash 1>/dev/null &
+  display_spinner $! "Erasing ESP32 Flash Storage"
 
+  esptool.py --chip esp32 \
+             --port "$DEVICE" \
+             --baud 460800 \
+             write_flash \
+             --compress \
+             --flash_mode dio \
+             --flash_freq 40m 0x1000 bin/build/up-firmware.bin \
+             1>/dev/null &
+  display_spinner $! "Flashing Micropython Binary"
+fi
 
 ###############################################################################
 #                                File Transfer                                #
@@ -61,14 +92,14 @@ display_spinner $! "Flashing Micropython Binary"
 echo "Creating Directories"
 for dir in $(find . -not -path '*/\.*' -type d \( ! -iname ".*" \)); do
     echo "  ${dir}"
-    ampy -d 0.5 --port $port mkdir "$dir"
+    ampy -d 0.5 --port "$DEVICE" mkdir "$dir"
 done
 
 # Copy all Python files
 echo "Copying Python Files..."
 for file in $(find . -name \*.py); do
     echo "  ${file}"
-    ampy -d 0.5 --port $port put "$file" "$file"
+    ampy -d 0.5 --port "$DEVICE" put "$file" "$file"
 done
 
 
@@ -79,6 +110,6 @@ done
 # NOTE: we must set the PYTHONPATH to allow importing `config` from the parent
 # directory.
 
-id=$(ampy --port $port run bin/hwtest.py |grep chip|awk '{print $3}')
+id=$(ampy --port "$DEVICE" run bin/hwtest.py |grep chip|awk '{print $3}')
 echo "Machine ID is: $id"
-PYTHONPATH=. python3 bin/setgrp.py "$id"
+PYTHONPATH=. python bin/setgrp.py "$id"

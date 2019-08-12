@@ -24,8 +24,9 @@ python -m ensurepip --upgrade || {
 
 }
 
-pip install ampy
-pip install esptool # tentatively required
+python -m pip install --user ampy
+python -m pip install --user esptool # tentatively required
+
 echo -e "***********************************\n"
 
 python bin/upload.py

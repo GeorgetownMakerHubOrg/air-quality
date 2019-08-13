@@ -46,7 +46,7 @@ def main():
     tphg_1 = tphg(22, 21)
     aq.update(tphg_1.measure())
 
-    # aq.update(stub.measure())> # when you only want the MCU and no sensors.
+    #aq.update(stub.measure()) # when you only want the MCU and no sensors.
     # for reasons I can't explain, UART takes time to setup - so do this last? WTF.
     pm25_1 = pm25(1, 26, 27)
     pm25_2 = pm25(2, 0, 2)

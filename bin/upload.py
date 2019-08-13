@@ -124,9 +124,14 @@ def ampy_hwtest(device):
             ["ampy", "--port", device, "run", "bin/hwtest.py"],
             stderr=subprocess.STDOUT
         )
-        # Parse output, extracting Chip ID
-        out = str(r)
-        chip_id = out.split(os.linesep)[0].split(':')[1].strip()
+
+        # Python 3 returns bytes
+        if sys.version_info >= (3, 0) and isinstance(r, bytes):
+            r = str(r, "utf-8")
+
+        # Extracting chip ID from the command output
+        chip_id = r.split(os.linesep)[0].split(':')[1].strip()
+
         logging.info("Device chip ID: {}".format(chip_id))
         return chip_id
     except subprocess.CalledProcessError as e:

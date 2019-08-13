@@ -15,9 +15,9 @@ Usage:
     $ # Upload files and automatically detect device
     $ python bin/upload.py
     $ # Upload files to specified device
-    $ python bin/upload.py --device /dev/tty.usbserial-1410
+    $ python bin/upload.py --port /dev/tty.usbserial-1410
     $ # Upload files to specified device, and re-install MicroPython
-    $ python bin/upload.py --device /dev/tty.usbserial-1410 --reinstall
+    $ python bin/upload.py --port /dev/tty.usbserial-1410 --reinstall
 
 Dependencies:
     - Ampy
@@ -182,7 +182,7 @@ def main(argv):
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--reinstall', dest='reinstall', action='store_true')
-    parser.add_argument('--device', dest='device')
+    parser.add_argument('--port', dest='device')
     args = parser.parse_args()
 
     # Detect the device when the argument is not provided

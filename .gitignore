@@ -1,24 +1,6 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
 *$py.class
-
+*.py[cod]
 .DS_Store
-
 .idea
-
-AQ-Shield
-Adafruit_CircuitPython_BME680
-Base
-Class
-ClassNotes.txt
-Collateral
-PCB
-STIA-436.gsheet
-ToolFoundry Proposal
-ads1x15.py
-bme280.py
+__pycache__/
 config.py
-micropython-adafruit-ads1015
-ppd42ns.py
-tests

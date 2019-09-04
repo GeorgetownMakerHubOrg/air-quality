@@ -25,7 +25,7 @@ def io_post(group):
 
     headers = {"X-AIO-Key": constants.X_AIO_KEY, "Content-Type": "application/json"}
 
-    url = "https://io.adafruit.com/api/v2/" + constants.USER + "/groups"
+    url = "http://io.adafruit.com/api/v2/" + constants.USER + "/groups"
     print("URL is:", url)
 
     data_dict = {"name": group, "description": "Air Quality Monitor - STIA436"}

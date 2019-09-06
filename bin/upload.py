@@ -191,6 +191,7 @@ def main(argv):
         devices = detect_device()
         if not devices:
             logging.error("No device was detected!")
+            sys.exit(1)
         else:
             device = devices[0]
     else:

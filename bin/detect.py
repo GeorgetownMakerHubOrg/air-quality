@@ -18,13 +18,15 @@ this operation, and restart.
 """
 
 
-def detect_device(device_glob='/dev/tty*', wait_time=2.5):
+def detect_device(device_glob='/dev/*', wait_time=2.5, wait_interval=10):
     """
     Monitors the list of devices, prompting the user to plug in the device, and
-    detects the newly attached device
+    detects the newly attached device. If no device is found after the
+    specified `wait_interval`, then an empty list is returned.
 
     @param wait_time: amount of time to wait before each device check
-    @return: device location (ie. /dev/tty.usb1234)
+    @param wait_interval: number of times to perform the device check
+    @return: list of detected devices (eg. ['/dev/tty.usb1234'])
     """
 
     # list of terminal devices
@@ -36,7 +38,7 @@ def detect_device(device_glob='/dev/tty*', wait_time=2.5):
 
     # find new terminal entries, retry until a new device is shown...
     ttys_diff = []
-    while True:
+    for i in range(0, wait_interval):
         ttys_new = glob.glob(device_glob)
         ttys_diff = [t for t in ttys_new if t not in ttys_before]
         if ttys_diff:
@@ -45,7 +47,7 @@ def detect_device(device_glob='/dev/tty*', wait_time=2.5):
             time.sleep(wait_time)
             print("Device not yet detected - Trying again...")
 
-    return ttys_diff[0]
+    return ttys_diff
 
 
 def connect_screen(device, prompt=True, baud=115200):

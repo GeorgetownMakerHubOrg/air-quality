@@ -121,7 +121,7 @@ def ampy_hwtest(device):
     try:
         logging.info("Performing hardware test: {}".format(device))
         r = subprocess.check_output(
-            ["ampy", "--port", device, "run", "bin/hwtest.py"],
+            ["ampy", "-d", "1.5", "--port", device, "run", "bin/hwtest.py"],
             stderr=subprocess.STDOUT
         )
 

@@ -90,7 +90,7 @@ def ampy_mkdir(device, directory):
     try:
         logging.info("Creating directory: {}".format(directory))
         subprocess.check_output(
-            ["ampy", "-d", "0.5", "--port", device, "mkdir", directory],
+            ["ampy", "-d", "1.5", "--port", device, "mkdir", directory],
             stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:
@@ -105,7 +105,7 @@ def ampy_cp(device, file):
     try:
         logging.info("Uploading file: {}".format(file))
         subprocess.check_output(
-            ["ampy", "-d", "0.5", "--port", device, "put", file, file],
+            ["ampy", "-d", "1.5", "--port", device, "put", file, file],
             stderr=subprocess.STDOUT
         )
     except subprocess.CalledProcessError as e:

@@ -41,7 +41,7 @@ class tph(object):
 
         data = self.bme280.read_compensated_data()
         measurements = {
-            "temperature-bme280_0x{:02x}".format(self.address): (data[0] / 100.0) * (9 / 5) + 32,  # Fahrenheit
+            "temperature-bme280_0x{:02x}".format(self.address): (data[0] / 100.0),                 # Celsius
             "pressure-bme280_0x{:02x}".format(self.address): data[1] / (256 * 1000.0),             # kPa
             "humidity-bme280_0x{:02x}".format(self.address): data[2] / 1024.0,                     # %
         }

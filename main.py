@@ -36,7 +36,6 @@ def run(timer):
 if machine.reset_cause() == machine.DEEPSLEEP_RESET:
     print("Woke from a deep sleep...")
     import wake
-
     wake.main()
 
 else:  # an opportunity to enter WebREPL after hard reset

@@ -81,7 +81,7 @@ class tphg(object):
             if self.sensor.get_sensor_data():
                 measurements = {
                     "temperature-bme680_0x{:02x}".format(self.address): self.sensor.data.temperature,  # Celcius
-                    "pressure-bme680_0x{:02x}".format(self.address): self.sensor.data.pressure,        # kPa
+                    "pressure-bme680_0x{:02x}".format(self.address): self.sensor.data.pressure/10.,    # kPa
                     "humidity-bme680_0x{:02x}".format(self.address): self.sensor.data.humidity,        # %
                 }
                 if self.sensor.data.heat_stable:

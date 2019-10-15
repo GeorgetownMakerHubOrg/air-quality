@@ -33,12 +33,14 @@ def init_sta(status):
         wlan.active(True)
         count = 0
         if not wlan.isconnected():                # should connect...
-            wlan.connect(sta_ssid, sta_password)  # if not then explicitly call connect
+            # if not then explicitly call connect
+            wlan.connect(sta_ssid, sta_password)
             while not wlan.isconnected():         # try connecting for 10 seconds
                 print("Waiting for IP... Count:", count)
                 if count == 10:
                     print("Can't find wifi - resetting")
-                    sleep.init(sleep_interval)    # pass an argument to delay awakening?
+                    # pass an argument to delay awakening?
+                    sleep.init(sleep_interval)
                 utime.sleep(1)
                 count += 1
         print("Network Configuration:", wlan.ifconfig())
@@ -48,14 +50,21 @@ def init_sta(status):
 
 def init_ap(status):
     if status:
-        ap.config(essid=ap_ssid, password=ap_password)  # set the ESSID & Password
-        ap.active(True)                                 # BEFORE you activate it
+        # set the ESSID & Password
+        ap.config(essid=ap_ssid, password=ap_password)
+        # BEFORE you activate it
+        ap.active(True)
         print("Network Configuration:", ap.ifconfig())
     else:
         ap.active(False)
 
 
-def io_post(group, aq):  # Adafruit.io POSTing
+def io_post(group, aq):
+    """POST air quality metrics to Adafruit I/O
+
+    :param group:  topic group for data feed
+    :param aq: dictionary of sensor measurements
+    """
     import json
     import sleep
     import urequests
@@ -66,15 +75,20 @@ def io_post(group, aq):  # Adafruit.io POSTing
     aqlist = []
     for key, value in aq.items():
         aqlist.append({"key": key, "value": value})
-        # print("Mylist", aqlist)
     api_list = {"location": {"lat": lat, "lon": lon}, "feeds": aqlist}
     data = json.dumps(api_list)
-    # POST response
+
     try:
         response = urequests.post(url, headers=headers, data=data)
         print(response.text)
-    except OSError as err:
-        print("OS error: {0}".format(err))
+    except OSError as e:
+        print("OS error: {0}".format(e))
+        sleep.init(sleep_interval)
+    except IndexError as e:
+        # This should not occur if we ensure that we are connected to the
+        # wireless network...
+        # See: https://github.com/micropython/micropython-lib/issues/300
+        print("Index Error using urequests: {0}".format(e))
         sleep.init(sleep_interval)
     else:
         response.close()

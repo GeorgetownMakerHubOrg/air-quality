@@ -188,7 +188,12 @@ def main(argv):
     # Detect the device when the argument is not provided
     if args.device is None:
         from detect import detect_device
-        device = detect_device()
+        devices = detect_device()
+        if not devices:
+            logging.error("No device was detected!")
+            sys.exit(1)
+        else:
+            device = devices[0]
     else:
         device = args.device
 

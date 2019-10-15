@@ -33,14 +33,12 @@ def init_sta(status):
         wlan.active(True)
         count = 0
         if not wlan.isconnected():                # should connect...
-            # if not then explicitly call connect
-            wlan.connect(sta_ssid, sta_password)
+            wlan.connect(sta_ssid, sta_password)  # if not then explicitly call connect
             while not wlan.isconnected():         # try connecting for 10 seconds
                 print("Waiting for IP... Count:", count)
                 if count == 10:
                     print("Can't find wifi - resetting")
-                    # pass an argument to delay awakening?
-                    sleep.init(sleep_interval)
+                    sleep.init(sleep_interval)    # pass an argument to delay awakening?
                 utime.sleep(1)
                 count += 1
         print("Network Configuration:", wlan.ifconfig())
@@ -50,10 +48,8 @@ def init_sta(status):
 
 def init_ap(status):
     if status:
-        # set the ESSID & Password
-        ap.config(essid=ap_ssid, password=ap_password)
-        # BEFORE you activate it
-        ap.active(True)
+        ap.config(essid=ap_ssid, password=ap_password)  # set the ESSID & Password
+        ap.active(True)                                 # BEFORE you activate it
         print("Network Configuration:", ap.ifconfig())
     else:
         ap.active(False)
